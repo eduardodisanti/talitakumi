@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Estadistica de Actividades" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="30" rightMargin="30" topMargin="20" bottomMargin="20">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<parameter name="fechadesde" class="java.util.Date"/>
+	<parameter name="fechahasta" class="java.util.Date"/>
+	<parameter name="clientedesde" class="java.lang.Integer"/>
+	<parameter name="clientehasta" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[select episodios.cliente as idcli, clientes.nombre, episodios.fecha, documento, apellidos, nombres, facturas.tipo as tipofact,
+       facturas.numero,
+       actividades.descripcion as descact,
+       consultorios.sucursal as sucursal,
+       facturas.importe, facturas.descuentos, (facturas.importe - facturas.descuentos) as cobrado
+from
+	carnetdesalud, clientes, episodios, personas, facturas, actividades, agenda, consultorios
+where
+        episodios.cliente = clientes.id     and
+        carnetdesalud.episodio=episodios.id and
+        episodios.paciente = personas.id    and
+	facturas.episodio = episodios.id    and
+        episodios.fecha >= $P{fechadesde}             and
+        episodios.fecha <= $P{fechahasta}             and
+	episodios.tipoepisodio = actividades.id    and
+	agenda.episodio        = episodios.id      and
+	agenda.consultorio     = consultorios.id   and
+	episodios.cliente >= $P{clientedesde}      and
+	episodios.cliente <= $P{clientehasta}      and
+	facturas.tipo = 'R'                        and
+        entregado='S'
+        GROUP BY clientes.nombre, actividades.descripcion, sucursal, episodios.fecha, episodios.paciente, facturas.id
+        order by clientes.nombre, actividades.descripcion, sucursal, episodios.fecha, apellidos]]>
+	</queryString>
+	<field name="fecha" class="java.sql.Date"/>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="apellidos" class="java.lang.String"/>
+	<field name="nombres" class="java.lang.String"/>
+	<field name="tipofact" class="java.lang.String"/>
+	<field name="idcli" class="java.lang.Integer"/>
+	<field name="documento" class="java.lang.Integer"/>
+	<field name="numero" class="java.lang.Integer"/>
+	<field name="descact" class="java.lang.String"/>
+	<field name="sucursal" class="java.lang.String"/>
+	<field name="importe" class="java.lang.Float"/>
+	<field name="descuentos" class="java.lang.Float"/>
+	<field name="cobrado" class="java.lang.Float"/>
+	<variable name="cuenta_lineas" class="java.lang.Integer" resetType="Group" resetGroup="cliente" calculation="Count">
+		<variableExpression><![CDATA[$F{documento}]]></variableExpression>
+	</variable>
+	<variable name="cuentaCarnet" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{documento}]]></variableExpression>
+	</variable>
+	<variable name="cantactividad" class="java.lang.Integer" resetType="Group" resetGroup="actividad" calculation="Count">
+		<variableExpression><![CDATA[$F{descact}]]></variableExpression>
+	</variable>
+	<variable name="importeAct" class="java.lang.Float" resetType="Group" resetGroup="actividad" calculation="Sum">
+		<variableExpression><![CDATA[$F{cobrado}]]></variableExpression>
+	</variable>
+	<variable name="importeCliente" class="java.lang.Float" resetType="Group" resetGroup="cliente" calculation="Sum">
+		<variableExpression><![CDATA[$F{cobrado}]]></variableExpression>
+	</variable>
+	<variable name="importeLugar" class="java.lang.Float" resetType="Group" resetGroup="sucursal" calculation="Sum">
+		<variableExpression><![CDATA[$F{cobrado}]]></variableExpression>
+	</variable>
+	<group name="cliente">
+		<groupExpression><![CDATA[($F{nombre})]]></groupExpression>
+		<groupHeader>
+			<band height="32">
+				<rectangle>
+					<reportElement key="rectangle-1" x="0" y="2" width="530" height="30" backcolor="#CCCCCC"/>
+					<graphicElement fill="Solid"/>
+				</rectangle>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField" x="100" y="1" width="430" height="30"/>
+					<textElement>
+						<font size="18"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{nombre}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField" x="10" y="6" width="70" height="20"/>
+					<textElement/>
+					<textFieldExpression class="java.lang.Integer"><![CDATA[$F{idcli}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="40">
+				<line>
+					<reportElement x="2" y="24" width="528" height="1"/>
+				</line>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField" x="343" y="4" width="77" height="20"/>
+					<textElement textAlignment="Right">
+						<font size="12" isBold="true" isItalic="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Integer"><![CDATA[$V{cuenta_lineas}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement key="staticText-3" x="230" y="4" width="113" height="20"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Total personas]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="420" y="5" width="110" height="20"/>
+					<textElement textAlignment="Right">
+						<font size="11" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Float"><![CDATA[$V{importeCliente}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="actividad">
+		<groupExpression><![CDATA[$F{descact}]]></groupExpression>
+		<groupHeader>
+			<band height="24">
+				<textField>
+					<reportElement x="2" y="2" width="301" height="20"/>
+					<textElement>
+						<font size="11" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{descact}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="20">
+				<textField>
+					<reportElement x="375" y="0" width="59" height="20"/>
+					<textElement textAlignment="Center">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Integer"><![CDATA[$V{cantactividad}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="275" y="0" width="100" height="20"/>
+					<textElement textAlignment="Right" verticalAlignment="Top"/>
+					<text><![CDATA[Total actividad]]></text>
+				</staticText>
+				<textField pattern="#,##0.00;-#,##0.00">
+					<reportElement x="434" y="0" width="100" height="20"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression class="java.lang.Float"><![CDATA[$V{importeAct}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="sucursal">
+		<groupExpression><![CDATA[$F{sucursal}]]></groupExpression>
+		<groupHeader>
+			<band height="23">
+				<staticText>
+					<reportElement x="100" y="2" width="29" height="20"/>
+					<textElement/>
+					<text><![CDATA[Lugar]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="130" y="2" width="100" height="20"/>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{sucursal}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="15">
+				<textField>
+					<reportElement mode="Opaque" x="375" y="1" width="59" height="13" backcolor="#CCCCCC"/>
+					<textElement textAlignment="Center">
+						<font isBold="true" isItalic="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Integer"><![CDATA[$V{sucursal_COUNT}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00;-#,##0.00">
+					<reportElement mode="Opaque" x="434" y="1" width="100" height="13" backcolor="#CCCCCC"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression class="java.lang.Float"><![CDATA[$V{importeLugar}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Opaque" x="302" y="1" width="73" height="13" backcolor="#CCCCCC"/>
+					<textElement textAlignment="Right" verticalAlignment="Top">
+						<font isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Total lugar]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="39">
+			<staticText>
+				<reportElement key="staticText-1" x="0" y="0" width="350" height="20"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FACTURACION CARNE DE SALUD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-2" x="380" y="0" width="40" height="20"/>
+				<textElement/>
+				<text><![CDATA[Fechas]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="false">
+				<reportElement key="textField" x="435" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.util.Date"><![CDATA[$P{fechadesde}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="false">
+				<reportElement key="textField" x="435" y="19" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.util.Date"><![CDATA[$P{fechahasta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="53" y="19" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{clientedesde}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="154" y="19" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{clientehasta}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band/>
+	</pageHeader>
+	<columnHeader>
+		<band/>
+	</columnHeader>
+	<detail>
+		<band height="19">
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="false">
+				<reportElement key="textField" x="0" y="3" width="80" height="16"/>
+				<textElement/>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField" x="161" y="2" width="80" height="16"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{documento}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField" x="240" y="2" width="120" height="16"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{apellidos}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField" x="361" y="2" width="110" height="16"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nombres}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField" x="80" y="2" width="20" height="16"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{tipofact}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField" x="101" y="2" width="60" height="16"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{numero}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="false">
+				<reportElement key="textField" x="471" y="3" width="64" height="16"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.Float"><![CDATA[$F{cobrado}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="15">
+			<staticText>
+				<reportElement x="2" y="1" width="51" height="14"/>
+				<textElement/>
+				<text><![CDATA[Página :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="77" y="0" width="36" height="15"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<lastPageFooter>
+		<band height="33">
+			<textField>
+				<reportElement mode="Opaque" x="420" y="12" width="100" height="20" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{cuentaCarnet}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="320" y="12" width="100" height="20" backcolor="#CCCCCC"/>
+				<textElement>
+					<font size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Total general]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="0" width="51" height="14"/>
+				<textElement/>
+				<text><![CDATA[Página :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="57" y="1" width="36" height="15"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</lastPageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

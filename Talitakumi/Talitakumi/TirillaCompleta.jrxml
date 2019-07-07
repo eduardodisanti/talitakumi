@@ -1,0 +1,849 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="TirillaLaboratorio" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="hora" class="java.lang.String"/>
+	<parameter name="id" class="java.lang.Integer"/>
+	<parameter name="edad" class="java.lang.Integer"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["/Users/rupertus/kCreativa/Medilab/talitakumi/v1.3/talitakumi/Talitakumi/"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select * from episodios, personas, clientes, actividades, agenda where episodios.id = $P{id} and episodios.paciente = personas.id and episodios.cliente = clientes.id and actividades.id = episodios.tipoepisodio and agenda.episodio = episodios.id]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="paciente" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fecha" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="medico" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tipoepisodio" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="terminado" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cliente" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombres" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="apellidos" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="telefono" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="email" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fechanacimiento" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="domicilio" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="documento" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ciudad" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="movil" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sexo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="foto" class="java.lang.Object">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="rut" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="telefonos" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="departamento" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="web" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="habilitado" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="descripcion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="color" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="icono" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="precio" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tipoactividad" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="consultorio" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="turno" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hora" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="actividad" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="vino" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="episodio" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="243" splitType="Stretch">
+			<printWhenExpression><![CDATA[new java.lang.Boolean(!$F{descripcion}.equals("LIBRETA PROFESIONAL"))]]></printWhenExpression>
+			<textField>
+				<reportElement x="237" y="42" width="162" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nombres}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="149" height="20"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MEDILAB MEDICO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="399" y="42" width="67" height="20"/>
+				<textElement/>
+				<text><![CDATA[Documento]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="76" y="20" width="479" height="20"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{descripcion}]]></textFieldExpression>
+			</textField>
+			<textField pattern="h.mm a">
+				<reportElement x="212" y="63" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="42" width="62" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Paciente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="177" y="64" width="35" height="20"/>
+				<textElement/>
+				<text><![CDATA[Hora :]]></text>
+			</staticText>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="76" y="63" width="101" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="63" width="62" height="20"/>
+				<textElement/>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="86" width="76" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Procedencia]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="77" y="86" width="479" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="42" width="151" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{apellidos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="465" y="42" width="90" height="20"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{documento}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="20" width="63" height="20"/>
+				<textElement/>
+				<text><![CDATA[Solicitud :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="455" y="0" width="100" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="77" y="129" width="479" height="20"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{descripcion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="172" width="62" height="20"/>
+				<textElement/>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="87" y="151" width="151" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{apellidos}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="129" width="63" height="20"/>
+				<textElement/>
+				<text><![CDATA[Solicitud :]]></text>
+			</staticText>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="77" y="172" width="101" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="466" y="151" width="90" height="20"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{documento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="456" y="109" width="100" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{id}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="178" y="173" width="35" height="20"/>
+				<textElement/>
+				<text><![CDATA[Hora :]]></text>
+			</staticText>
+			<textField pattern="h.mm a">
+				<reportElement x="213" y="172" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="411" y="151" width="55" height="20"/>
+				<textElement/>
+				<text><![CDATA[Docmento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="192" width="76" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Procedencia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="151" width="62" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Paciente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="109" width="211" height="20"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MEDILAB ODONTOLOGO]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="238" y="151" width="172" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nombres}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="1" y="106" width="554" height="1"/>
+			</line>
+			<line>
+				<reportElement x="1" y="215" width="554" height="1"/>
+			</line>
+			<textField>
+				<reportElement x="299" y="0" width="100" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{consultorio}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="212" y="0" width="87" height="20"/>
+				<textElement/>
+				<text><![CDATA[CONSULTORIO : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="399" y="62" width="67" height="20"/>
+				<textElement>
+					<font size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Edad]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="466" y="62" width="89" height="20"/>
+				<textElement>
+					<font size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{edad}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="410" y="171" width="67" height="20"/>
+				<textElement>
+					<font size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Edad]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="477" y="171" width="78" height="20"/>
+				<textElement>
+					<font size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{edad}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="215" width="149" height="20">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Medilab Laboratorio]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="559" splitType="Stretch">
+			<textField>
+				<reportElement x="3" y="244" width="86" height="20">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{id}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="225" width="86" height="19">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Número]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="23" width="62" height="20">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Paciente]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="465" y="24" width="90" height="20">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{documento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="227" y="24" width="172" height="20">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nombres}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="76" y="24" width="151" height="20">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{apellidos}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="76" y="63" width="101" height="20">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+				<textElement/>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="76" y="87" width="479" height="20">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="86" width="76" height="20">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Procedencia]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement x="91" y="225" width="163" height="39">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code39 (Extended)" drawText="false" checksumRequired="false">
+					<jr:codeExpression><![CDATA["1234"]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+			<staticText>
+				<reportElement x="410" y="24" width="55" height="20">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+				<textElement/>
+				<text><![CDATA[Docmento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="63" width="62" height="20">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+				<textElement/>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<textField pattern="h.mm a">
+				<reportElement x="212" y="63" width="100" height="20">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+				<textElement/>
+				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="177" y="63" width="35" height="20">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+				<textElement/>
+				<text><![CDATA[Hora :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="11" y="110" width="116" height="20" backcolor="#CCCCFF">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[DIABETES :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="130" width="116" height="20">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[EXTRACCION :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="11" y="150" width="116" height="20" backcolor="#CCCCFF">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[TRAE ORINA :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="170" width="116" height="20">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+				<textElement/>
+				<text><![CDATA[APORTA RESULTADOS :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="127" y="188" width="72" height="17" backcolor="#CCCCFF">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[ORINA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="127" y="170" width="72" height="20">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[SANGRE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="127" y="205" width="72" height="20">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[COMPLETOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="127" y="110" width="127" height="20" backcolor="#CCCCFF">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[SI      NO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="127" y="130" width="127" height="20">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[SI      NO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="127" y="150" width="127" height="20" backcolor="#CCCCFF">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[SI      NO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="199" y="168" width="55" height="20">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[SI      NO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="199" y="188" width="55" height="17" backcolor="#CCCCFF">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[SI      NO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="199" y="205" width="55" height="20">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[SI      NO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="411" y="43" width="56" height="20">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Edad]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="467" y="43" width="89" height="20">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{edad}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement mode="Opaque" x="254" y="110" width="301" height="162">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="id">
+					<subreportParameterExpression><![CDATA[$P{id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression class="java.lang.String"><![CDATA["TirillaLaboratorioAdiconales.jasper"]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement x="6" y="292" width="63" height="20">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+				<textElement/>
+				<text><![CDATA[Solicitud :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="80" y="312" width="151" height="20">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{apellidos}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="118" y="447" width="72" height="20">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[SANGRE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="355" width="76" height="20">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Procedencia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="334" width="62" height="20">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+				<textElement/>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="80" y="332" width="101" height="20">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+				<textElement/>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="2" y="427" width="128" height="20" backcolor="#CCCCFF">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[TRAE ORINA :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="313" width="62" height="20">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Paciente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="118" y="465" width="72" height="17" backcolor="#CCCCFF">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[ORINA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="447" width="116" height="20">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+				<textElement/>
+				<text><![CDATA[APORTA RESULTADOS :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="407" width="129" height="20">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[SE REALIZA EXTRACCION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2" y="387" width="128" height="20" backcolor="#CCCCFF">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[DIABETES :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="181" y="333" width="35" height="20">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+				<textElement/>
+				<text><![CDATA[Hora :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="272" width="149" height="20">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Extraccionista]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="1" y="517" width="86" height="20">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{id}]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement x="87" y="498" width="150" height="39">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code39 (Extended)" drawText="false" checksumRequired="false">
+					<jr:codeExpression><![CDATA["1234"]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+			<staticText>
+				<reportElement x="1" y="498" width="86" height="20">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Número]]></text>
+			</staticText>
+			<line>
+				<reportElement x="-1" y="271" width="554" height="1">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+			</line>
+			<textField>
+				<reportElement x="80" y="292" width="468" height="20">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{descripcion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="77" y="357" width="479" height="20">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="403" y="313" width="55" height="20">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+				<textElement/>
+				<text><![CDATA[Docmento]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="458" y="313" width="90" height="20">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{documento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="230" y="312" width="172" height="20">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nombres}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="74" y="3" width="479" height="20">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{descripcion}]]></textFieldExpression>
+			</textField>
+			<textField pattern="h.mm a">
+				<reportElement x="216" y="334" width="100" height="20">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+				<textElement/>
+				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="406" y="333" width="67" height="20">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Edad]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="473" y="333" width="78" height="20">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{edad}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="191" y="466" width="46" height="18" backcolor="#CCCCFF">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[SI      NO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="191" y="448" width="46" height="19">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[SI      NO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="132" y="409" width="55" height="18">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[SI      NO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="131" y="427" width="55" height="19" backcolor="#CCCCFF">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[SI      NO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="131" y="389" width="55" height="19" backcolor="#CCCCFF">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[SI      NO]]></text>
+			</staticText>
+			<subreport>
+				<reportElement mode="Opaque" x="250" y="377" width="305" height="182">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="id">
+					<subreportParameterExpression><![CDATA[$P{id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression class="java.lang.String"><![CDATA["TirillaLaboratorioAdiconales.jasper"]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement x="1" y="0" width="63" height="20">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{edad}.intValue() > 4)]]></printWhenExpression>
+				</reportElement>
+				<textElement/>
+				<text><![CDATA[Solicitud :]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ResumenDeCajaEfectivo" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="30" rightMargin="30" topMargin="20" bottomMargin="20">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<parameter name="fecha_desde" class="java.lang.String"/>
+	<parameter name="fecha_hasta" class="java.lang.String"/>
+	<parameter name="usuario" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT
+	tipodeactividad.id as idact,  tipodeactividad.descripcion as descact, facturas.tipo, count(*) as cantidad, sum(importe - descuentos) as pesos, usuarios.usuario as nombrete, usuarios.funcionario as fun
+FROM
+	episodios, facturas, tipodeactividad, usuarios
+WHERE
+     episodios.id = facturas.episodio
+ AND episodios.tipoepisodio = tipodeactividad.id
+ AND fechaentregado >= $P{fecha_desde}
+ AND fechaentregado <= $P{fecha_hasta}
+ and entregado = 'S' 
+ and (facturas.tipo='C' or facturas.tipo='R')
+ and usuarios.funcionario = facturas.funcionario
+group by
+	tipodeactividad.descripcion, facturas.tipo
+order by 
+	tipodeactividad.descripcion,
+	facturas.tipo]]>
+	</queryString>
+	<field name="descact" class="java.lang.String"/>
+	<field name="tipo" class="java.lang.String"/>
+	<field name="cantidad" class="java.lang.Long"/>
+	<field name="pesos" class="java.lang.Double"/>
+	<field name="idact" class="java.lang.Integer"/>
+	<field name="nombrete" class="java.lang.String"/>
+	<field name="fun" class="java.lang.Integer"/>
+	<variable name="tipopago" class="java.lang.String">
+		<variableExpression><![CDATA[$F{tipo}.toString().equals("C") ? new java.lang.String("CONTADO") : new java.lang.String("CREDITO")]]></variableExpression>
+	</variable>
+	<variable name="contado" class="java.lang.Long" resetType="Group" resetGroup="tipopago" calculation="Sum">
+		<variableExpression><![CDATA[$F{tipo}.toString().equals("C") ? $F{cantidad} : new java.lang.Long(0)]]></variableExpression>
+	</variable>
+	<variable name="credito" class="java.lang.Long" resetType="Group" resetGroup="tipopago" calculation="Sum">
+		<variableExpression><![CDATA[$F{tipo}.toString().equals("R") ? $F{cantidad} : new java.lang.Long(0)]]></variableExpression>
+	</variable>
+	<variable name="sumacontado" class="java.lang.Long" resetType="Group" resetGroup="actividad" calculation="Sum">
+		<variableExpression><![CDATA[$V{contado}]]></variableExpression>
+	</variable>
+	<variable name="sumacredito" class="java.lang.Long" resetType="Group" resetGroup="actividad" calculation="Sum">
+		<variableExpression><![CDATA[$V{credito}]]></variableExpression>
+	</variable>
+	<variable name="sumapesos" class="java.lang.Double" resetType="Group" resetGroup="actividad" calculation="Sum">
+		<variableExpression><![CDATA[$F{pesos}]]></variableExpression>
+	</variable>
+	<variable name="totalpesos" class="java.lang.Double" resetType="Group" resetGroup="tipopago" calculation="Sum">
+		<variableExpression><![CDATA[$V{sumapesos}]]></variableExpression>
+	</variable>
+	<variable name="toalcontado" class="java.lang.Long" calculation="Sum">
+		<variableExpression><![CDATA[$V{contado}]]></variableExpression>
+	</variable>
+	<variable name="totalcredito" class="java.lang.Long" calculation="Sum">
+		<variableExpression><![CDATA[$V{credito}]]></variableExpression>
+	</variable>
+	<variable name="totaldinero" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{tipo}.toString().equals("C") ? $F{pesos} : new java.lang.Double(0)]]></variableExpression>
+	</variable>
+	<variable name="pesoscontado" class="java.lang.Double" resetType="Group" resetGroup="actividad" calculation="Sum">
+		<variableExpression><![CDATA[$F{tipo}.toString().equals("C") ? $F{pesos} : new java.lang.Double(0)]]></variableExpression>
+	</variable>
+	<variable name="totalactividad" class="java.lang.Integer" calculation="Sum"/>
+	<group name="actividad">
+		<groupExpression><![CDATA[$F{idact}]]></groupExpression>
+		<groupHeader>
+			<band/>
+		</groupHeader>
+		<groupFooter>
+			<band height="21">
+				<rectangle>
+					<reportElement x="0" y="1" width="535" height="20"/>
+				</rectangle>
+				<line>
+					<reportElement x="252" y="1" width="1" height="20"/>
+				</line>
+				<line>
+					<reportElement x="347" y="1" width="1" height="20"/>
+				</line>
+				<line>
+					<reportElement x="425" y="1" width="1" height="20"/>
+				</line>
+				<textField isBlankWhenNull="true">
+					<reportElement x="170" y="1" width="79" height="20"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font isBold="true" isItalic="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Long"><![CDATA[new java.lang.Long($V{sumacredito}.longValue() + $V{sumacontado}.longValue())]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00;(-#,##0.00)">
+					<reportElement x="426" y="1" width="105" height="20"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle"/>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$V{pesoscontado}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="348" y="1" width="74" height="20"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Long"><![CDATA[$V{sumacredito}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField" x="0" y="1" width="169" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{descact}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="264" y="1" width="77" height="20"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Long"><![CDATA[$V{sumacontado}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="170" y="1" width="1" height="20"/>
+				</line>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="tipopago">
+		<groupExpression><![CDATA[$F{tipo}]]></groupExpression>
+		<groupHeader>
+			<band/>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band/>
+	</title>
+	<pageHeader>
+		<band/>
+	</pageHeader>
+	<columnHeader>
+		<band/>
+	</columnHeader>
+	<detail>
+		<band/>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band/>
+	</pageFooter>
+	<lastPageFooter>
+		<band/>
+	</lastPageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

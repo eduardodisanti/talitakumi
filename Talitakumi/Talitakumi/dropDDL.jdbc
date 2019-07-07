@@ -1,0 +1,51 @@
+ALTER TABLE talitakumi.pacientes DROP FOREIGN KEY FK_pacientes_id
+ALTER TABLE talitakumi.pacientes DROP FOREIGN KEY FK_pacientes_seguro
+ALTER TABLE talitakumi.medicamentos DROP FOREIGN KEY FK_medicamentos_familia
+ALTER TABLE talitakumi.medicamentos DROP FOREIGN KEY UNQ_medicamentos_0
+ALTER TABLE talitakumi.episodioactitudes DROP FOREIGN KEY FK_episodioactitudes_episodio
+ALTER TABLE talitakumi.agenda DROP FOREIGN KEY FK_agenda_episodio
+ALTER TABLE talitakumi.enfermedades DROP FOREIGN KEY FK_enfermedades_familia
+ALTER TABLE talitakumi.episodiosenfermedades DROP FOREIGN KEY FK_episodiosenfermedades_episodio
+ALTER TABLE talitakumi.episodiosenfermedades DROP FOREIGN KEY FK_episodiosenfermedades_enfermedad
+ALTER TABLE talitakumi.libretasdeconducir DROP FOREIGN KEY FK_libretasdeconducir_episodio
+ALTER TABLE talitakumi.episodios DROP FOREIGN KEY FK_episodios_paciente
+ALTER TABLE talitakumi.episodios DROP FOREIGN KEY FK_episodios_medico
+ALTER TABLE talitakumi.episodiopresion DROP FOREIGN KEY FK_episodiopresion_episodio
+ALTER TABLE talitakumi.familiamedicamentos DROP FOREIGN KEY UNQ_familiamedicamentos_0
+ALTER TABLE talitakumi.episodiosvicios DROP FOREIGN KEY FK_episodiosvicios_episodio
+ALTER TABLE talitakumi.episodiosvicios DROP FOREIGN KEY FK_episodiosvicios_vicio
+ALTER TABLE talitakumi.episodioagudezasauditivas DROP FOREIGN KEY FK_episodioagudezasauditivas_episodio
+ALTER TABLE talitakumi.personas DROP FOREIGN KEY UNQ_personas_0
+ALTER TABLE talitakumi.familiaenfermedades DROP FOREIGN KEY UNQ_familiaenfermedades_0
+ALTER TABLE talitakumi.episodiosmedicamentos DROP FOREIGN KEY FK_episodiosmedicamentos_medicamento
+ALTER TABLE talitakumi.episodiosmedicamentos DROP FOREIGN KEY FK_episodiosmedicamentos_episodio
+ALTER TABLE talitakumi.episodioexameneneuro DROP FOREIGN KEY FK_episodioexameneneuro_episodio
+ALTER TABLE talitakumi.episodioagudezasvisuales DROP FOREIGN KEY FK_episodioagudezasvisuales_episodio
+ALTER TABLE talitakumi.episodiointegrideadme DROP FOREIGN KEY FK_episodiointegrideadme_episodio
+DROP TABLE talitakumi.Medicos
+DROP TABLE talitakumi.numerador
+DROP TABLE talitakumi.pacientes
+DROP TABLE talitakumi.medicamentos
+DROP TABLE talitakumi.episodioactitudes
+DROP TABLE talitakumi.agenda
+DROP TABLE talitakumi.enfermedades
+DROP TABLE talitakumi.consultorios
+DROP TABLE talitakumi.episodiosenfermedades
+DROP TABLE talitakumi.libretasdeconducir
+DROP TABLE talitakumi.episodios
+DROP TABLE talitakumi.episodiopresion
+DROP TABLE talitakumi.familiamedicamentos
+DROP TABLE talitakumi.viciossociales
+DROP TABLE talitakumi.actividades
+DROP TABLE talitakumi.seguros
+DROP TABLE talitakumi.Usuarios
+DROP TABLE talitakumi.episodiosvicios
+DROP TABLE talitakumi.episodioagudezasauditivas
+DROP TABLE talitakumi.personas
+DROP TABLE talitakumi.procedencias
+DROP TABLE talitakumi.familiaenfermedades
+DROP TABLE talitakumi.episodiosmedicamentos
+DROP TABLE talitakumi.episodioexameneneuro
+DROP TABLE talitakumi.roundrobin
+DROP TABLE talitakumi.episodioagudezasvisuales
+DROP TABLE talitakumi.episodiointegrideadme

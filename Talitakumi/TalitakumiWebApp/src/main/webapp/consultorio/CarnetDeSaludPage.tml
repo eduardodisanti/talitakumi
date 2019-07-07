@@ -1,0 +1,592 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+    <head>
+        <title>iTalitakumi</title>
+    </head>
+    <body bgcolor="#dddddd">
+        <div id="branding">
+           <table border='0' width="100%">
+                          <tr>
+                               <td align="left"><img src='../images/logo.jpg'  width='100px'/></td>
+                               <td align="center"><h3>CARNET DE SALUD BASICO</h3></td>
+                               <td align="right"><h4>${fecha}</h4></td>
+                          </tr>
+           </table>
+        </div>
+<div>
+
+ <table border='0' width="100%" bgcolor="#dddddd">
+    <form t:type="form" t:id="doc" style="border: medium solid gray" action="#" >
+        <tr>
+             <td colspan = "2">
+             CEDULA <input t:type="TextField" t:id="documento" size="8" t:validate="required" t:mixins="zoneUpdater" zone="pacienteZone" event="cedulaChanged" clientEvent="blur"/>
+             </td>
+        </tr>
+    </form>
+</table>
+<t:zone t:id="pacienteZone">
+ <form t:type="form" t:id="cds" style="border: medium solid gray" action="#" >
+	<t:errors/>
+                <table border='0' width="100%" bgcolor="#dddddd">
+                        <tr>
+                            <td>
+                                APELLIDOS <input t:type="TextField" t:id="apellidos" size="40"/>
+                            </td>
+                            <td>
+                                NOMBRES <input t:type="TextField" t:id="nombres" size="40"/>
+                            </td>
+                         </tr>
+                        <tr>
+                            <td>
+                                FECHA DE NACIMIENTO <input t:type="DateField" t:id="fechanacimiento" t:format="dd/MM/yyyy"/>
+                            </td>
+                            <td>
+                                SEXO <input t:type="TextField" t:id="sexo" size="1" t:validate="required"/>
+                            </td>
+                         </tr>
+                        <tr>
+                            <td>
+                                FOTO <t:checkbox t:id="foto"/>
+                            </td>
+                            <td>
+                                CLIENTE<select t:type="select" t:model="clientes" encoder="clientes" t:value="cliente"></select>
+                            </td>
+                         </tr>
+		  </table>
+                <h3>ANTECEDENTES FAMILIARES</h3>
+                <table border='0' bgcolor="#bfccff" width="100%">
+                        <tr>
+                            <td>
+                                <t:checkbox t:id="antecedentesHTA"/>HIPERTENSION ARTERIAL
+                            </td>
+                            <td>
+                                <t:checkbox t:id="antecedentesDiabetes"/>DIABETES
+                            </td>
+                            <td>
+                                <t:checkbox t:id="antecedentesOtros"/>OTROS
+                            </td>
+                         </tr>
+		  </table>
+                <h3>ANTECEDENTES PERSONALES</h3>
+                <table border='0' bgcolor="#dddddd" width="100%">
+                        <tr>
+                            <td>
+                                <t:checkbox t:id="antecedentesFUMADOR"/>FUMADOR
+                            </td>
+                            <td>
+                                <t:checkbox t:id="antecedentesALCOHOL"/>CONSUME ALCOHOL
+                            </td>
+                            <td>
+                                <t:checkbox t:id="antecedentesDIABETICOS"/>DIABETICOS
+                                <t:select t:id="antecedentesDIABETICOSTIPO" model="literal:1=Tipo1,2=TipoII,3=TipoIII"/>
+                            </td>
+                            <td>
+                                <t:checkbox t:id="antecedentesTIROIDEOS"/>TIROIDEOS
+                                <t:select t:id="antecedentesTIROIDEOSTIPO" model="literal:1=HIPERTIROIDISMO,2=HIPOTIROIDISMO,3=BOCIO"/>
+                            </td>
+                         </tr>
+		  </table>
+                <b>ALERGIAS</b>
+                <table border='0' bgcolor="#dddddd" width="100%">
+                        <tr>
+                            <td>
+                                <t:checkbox t:id="antecedentesALERGIA_ALIMENTOS"/>ALIMENTOS
+                            </td>
+                            <td>
+                                <t:checkbox t:id="antecedentesALERGIA_POLVOS"/>POLVOS
+                            </td>
+                            <td>
+                                <t:checkbox t:id="antecedentesALERGIA_MEDICAMENTOS"/>MEDICAMENTOS
+                            </td>
+                            <td>
+                                <t:checkbox t:id="antecedentesALERGIA_OTROS"/>OTROS 
+                            </td>
+                         </tr>
+		  </table>
+                <b>CARDIOVASCULARES</b>
+                <table border='0' bgcolor="#dddddd" width="100%">
+                        <tr>
+                            <td>
+                                <t:checkbox t:id="antecedentesCARDIOVASCULARES_HTA"/>HTA 
+                            </td>
+                            <td>
+                                <t:checkbox t:id="antecedentesCARDIOVASCULARES_PALPITACIONES"/>PALPITACIONES
+                            </td>
+                            <td>
+                                <t:checkbox t:id="antecedentesCARDIOVASCULARES_TAQUICARDIA"/>TAQUICARDIA
+                            </td>
+                            <td>
+                                <t:checkbox t:id="antecedentesCARDIOVASCULARES_ARRITMIA"/>ARRITMIA
+                            </td>
+                            <td>
+                                <t:checkbox t:id="antecedentesCARDIOVASCULARES_SOPLO"/>SOPLO
+                            </td>
+                            <td>
+                                <t:checkbox t:id="antecedentesCARDIOVASCULARES_FIEBREREUMATICA"/>FIEBRE REUMATICA
+                            </td>
+                            <td>
+                                <t:checkbox t:id="antecedentesCARDIOVASCULARES_INFARTOMIOCARDIO"/>INFARTO MIOCARDIO
+                            </td>
+                         </tr>
+                         <tr>
+                            <td>
+                                <t:checkbox t:id="antecedentesCARDIOVASCULARES_ECG"/>E.C.G
+                            </td>
+                            <td colspan="6">
+                                OTROS <t:textfield t:id="antecedentesCARDIOVASCULARES_OTROS" size="80"/>
+                            </td>
+                         </tr>
+		  </table>
+                <b>PLEUROPULMONARES</b>
+                <table border='0' bgcolor="#dddddd" width="60%">
+                        <tr>
+                            <td>
+                                <t:checkbox t:id="antecedentesPLEUROPULMONARES_ASMA"/>ASMA
+                            </td>
+                            <td>
+                                <t:checkbox t:id="antecedentesPLEUROPULMONARES_NEUMOPATIA"/>NEUMOPATIA
+                            </td>
+                            <td>
+                                <t:checkbox t:id="antecedentesPLEUROPULMONARES_BRONQUITIS"/>BRONQUITIS
+                            </td>
+                         </tr>
+		  </table>
+                <b>DIGESTIVOS</b>
+                <table border='0' bgcolor="#dddddd" width="100%">
+                        <tr>
+                            <td>
+                                <t:checkbox t:id="antecedentesDIGESTIVOS_HEPATITIS"/>HEPATITIS 
+                            </td>
+                            <td>
+                                <t:checkbox t:id="antecedentesDIGESTIVOS_GASTRITIS"/>GASTRITIS
+                            </td>
+                            <td>
+                                <t:checkbox t:id="antecedentesDIGESTIVOS_ULCERA"/>ULCERA
+                            </td>
+                            <td>
+                                <t:checkbox t:id="antecedentesDIGESTIVOS_DIVERTICULOS"/>DIVERTICULOS
+                            </td>
+                            <td>
+                                <t:checkbox t:id="antecedentesDIGESTIVOS_ALTERACIONES"/>ALTERACIONES DEL TRANSITO
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <t:checkbox t:id="antecedentesDIGESTIVOS_HEMORROIDES"/>HEMORROIDES
+                            </td>
+                            <td>
+                                <t:checkbox t:id="antecedentesDIGESTIVOS_LITIASIS"/>LITIASIS VESICULAR
+                            </td>
+                         </tr>
+		  </table>
+                <b>RENALES</b>
+                <table border='0' bgcolor="#dddddd" width="80%">
+                        <tr>
+                            <td>
+                                <t:checkbox t:id="antecedentesRENALES_INFECCION"/>INFECCION DE RINON
+                            </td>
+                            <td>
+                                <t:checkbox t:id="antecedentesRENALES_LITIASIS"/>LITIASIS RENAL
+                            </td>
+                            <td>
+                                <t:checkbox t:id="antecedentesRENALES_COLICOS"/>COLICOS NEFRITICOS
+                            </td>
+                            <td>
+                                <t:checkbox t:id="antecedentesRENALES_INFECCIONURINARIA"/>INFECCION URINARIA BAJA
+                            </td>
+                         </tr>
+		  </table>
+                <b>OSTEOARTICULARES</b>
+                <table border='0' bgcolor="#dddddd" width="60%">
+                        <tr>
+                            <td>
+                                <t:checkbox t:id="antecedentesOSTEOARTICULARES_TENDINITIS"/>TENDINITIS
+                            </td>
+                            <td>
+                                <t:checkbox t:id="antecedentesOSTEOARTICULARES_LUMBALGIAS"/>LUMBALGIAS
+                            </td>
+                            <td>
+                                <t:checkbox t:id="antecedentesOSTEOARTICULARES_FRACTURAS"/>FRACTURAS
+                            </td>
+                            <td>
+                                <t:checkbox t:id="antecedentesOSTEOARTICULARES_ARTROSIS"/>ARTROSIS
+                            </td>
+                         </tr>
+		  </table>
+                <b>OFTALMOLOGICOS</b>
+                <table border='0' bgcolor="#dddddd" width="60%">
+                        <tr>
+                            <td>
+                                <t:checkbox t:id="antecedentesOFTALMOLOGICOS_USALENTES"/>USA LENTES
+                            </td>
+                         </tr>
+		  </table>
+                <b>NEUROLOGICOS</b>
+                <table border='0' bgcolor="#dddddd" width="60%">
+                        <tr>
+                            <td>
+                                <t:checkbox t:id="antecedentesNEUROLOGICOS_VERTIGO"/>VERTIGO
+                            </td>
+                            <td>
+                                <t:checkbox t:id="antecedentesNEUROLOGICOS_EPILEPSIA"/>EPILEPSIA
+                            </td>
+                         </tr>
+		 </table>
+                <br/>
+                <table border='0' bgcolor="#dddddd" width="100%">
+                    <tr><td><b>INTERNACIONES</b><t:checkbox t:id="antecedentesINTERNACIONES"/></td></tr>
+                    <tr><td><b>ANTECEDENTES AUDITIVOS</b><t:checkbox t:id="antecedentesAUDITIVOS"/></td></tr>
+                    <tr><td><b>ANTECEDENTES VENEREOS</b><t:checkbox t:id="antecedentesVENEREOS"/></td></tr>
+                    <tr><td><b>ANTECEDENTES SIQUIATRICOS</b><t:checkbox t:id="antecedentesSIQUIATRICOS"/></td></tr>
+                    <tr><td><b>ANTECEDENTES QUIRURGICOS</b><t:checkbox t:id="antecedentesQUIRURGICOS"/></td></tr>
+                </table>
+                <b>OBSTETRICOS</b>
+                <table border='0' bgcolor="#dddddd" width="100%">
+                        <tr>
+                            <td>
+                                <t:checkbox t:id="antecedentesOBSTETRICOS_EMBARAZOS"/>EMBARAZOS
+                            </td>
+                            <td>
+                                <t:checkbox t:id="antecedentesOBSTETRICOS_ABORTOS"/>ABORTOS
+                            </td>
+                            <td>
+                                <t:checkbox t:id="antecedentesOBSTETRICOS_DIU"/>D.I.U
+                            </td>
+                            <td>
+                                <t:checkbox t:id="antecedentesOBSTETRICOS_ACO"/>A.C.O
+                            </td>
+                            <td>
+                                <t:checkbox t:id="antecedentesOBSTETRICOS_AUTOEXAMENDEMAMA"/>AUTOEXAMEN DE MAMA
+                            </td>
+                         </tr>
+                        <tr>
+                            <td>
+                                <t:checkbox t:id="antecedentesOBSTETRICOS_PAPANICOLAU"/>PAPANICOLAU
+                                <t:DateField t:id="antecedentesOBSTETRICOS_PAPANICOLAU_FECHA" size="10" t:format="dd/MM/yyyy"/>
+                            </td>
+                            <td>
+                                MEDICO <t:textfield t:id="antecedentesOBSTETRICOS_PAPANICOLAU_MEDICO" size="10"/>
+                            </td>
+                            <td>
+                                CLINICA <t:textfield t:id="antecedentesOBSTETRICOS_PAPANICOLAU_CLINICA" size="10"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <t:checkbox t:id="antecedentesOBSTETRICOS_MAMOGRAFIA"/>MAMOGRAFIA
+                                <t:DateField t:id="antecedentesOBSTETRICOS_MAMOGRAFIA_FECHA" size="10" t:format="dd/MM/yyyy"/>
+                            </td>
+                            <td>
+                                MEDICO <t:textfield t:id="antecedentesOBSTETRICOS_MAMOGRAFIA_MEDICO" size="10"/>
+                            </td>
+                            <td>
+                                CLINICA <t:textfield t:id="antecedentesOBSTETRICOS_MAMOGRAFIA_CLINICA" size="10"/>
+                            </td>
+                        </tr>
+		 </table>
+                <b>EXAMEN FISICO</b>
+                <table border='0' bgcolor="#bfccff" width="100%">
+                        <tr>
+                            <td>
+                                PESO <t:textfield t:id="examen_fisicoPESO"/>
+                            </td>
+                            <td>
+                                TALLA <t:textfield t:id="examen_fisicoTALLA"/>
+                            </td>
+                            <td>
+                                I.M.C <t:textfield t:id="examen_fisicoIMC"/>
+                            </td>
+                            <td>
+                                PERIMETRO ABDOMINAL <t:textfield t:id="examen_fisicoPERIMETROABDOMINAL" size="3"/>
+                            </td>
+                         </tr>
+		 </table>
+                <b>PIEL Y MUCOSAS</b>
+                <table border='0' bgcolor="#bfccff" width="100%">
+                        <tr>
+                            <td>
+                                <t:checkbox t:id="examen_fisico_pielymucosas_MICOSOS"/>MICOSIS
+                            </td>
+                            <td>
+                                <t:checkbox t:id="examen_fisico_pielymucosas_ALERGIAS"/>ALERGIAS
+                            </td>
+                            <td>
+                                <t:checkbox t:id="examen_fisico_pielymucosas_PSORIASIS"/>PSORIASIS
+                            </td>
+                            <td>
+                                <t:checkbox t:id="examen_fisico_pielymucosas_LUNARES"/>LUNARES
+                            </td>
+                         </tr>
+		 </table>
+                <table border='0' bgcolor="#bfccff" width="100%">
+                        <tr>
+                            <td>
+                                <b>LINFOGANGLIONAR</b><t:textfield t:id="examen_fisico_LINFOGANGLIONAR"/>
+                            </td>
+                         </tr>
+		 </table>
+                <table border='0' bgcolor="#bfccff" width="100%">
+                        <tr>
+                            <td>
+                                <t:checkbox t:id="examen_fisico_CUELLO"/><b>CUELLO</b>
+                                <t:select t:id="examen_fisico_CUELLO_GRADO" model="literal:1=G 1,2=G II,3=G III,3=G IV"/>
+                            </td>
+                         </tr>
+		 </table>
+                <b>SISTEMA VASCULAR</b>
+                <table border='0' bgcolor="#bfccff" width="100%">
+                        <tr>
+                            <td>
+                                <B>CUELLO</B> <t:checkbox t:id="examen_fisico_VASCULAR_CENTRAL_RI"/>R.I
+                            </td>
+                            <td>
+                                FRECUENCIA <t:textfield t:id="examen_fisico_VASCULAR_CENTRAL_FRECUENCIA" size="3"/>
+                            </td>
+                            <td>
+                                <t:checkbox t:id="examen_fisico_VASCULAR_CENTRAL_SOPLOS"/>SOPLOS
+                            </td>
+                         </tr>
+		 </table>
+                <table border='0' bgcolor="#bfccff" width="100%">
+                        <tr>
+                            <td>
+                                <B>T/A</B>
+                            </td>
+                            <td>
+                                <B>1a TOMA</B>
+                            </td>
+                            <td>
+                                    SISTOLICA<t:textfield t:id="examen_fisico_TA_PT_SISTOLICA" size="3"/>
+                            </td>
+                            <td>
+                                    DIASTOLICA<t:textfield t:id="examen_fisico_TA_PT_DIASTOLICA" size="3"/>
+                            </td>
+                            <td>
+                                <B>2a TOMA</B>
+                            </td>
+                            <td>
+                                    SISTOLICA<t:textfield t:id="examen_fisico_TA_ST_SISTOLICA" size="3"/>
+                            </td>
+                            <td>
+                                    DIASTOLICA<t:textfield t:id="examen_fisico_TA_ST_DIASTOLICA" size="3"/>
+                            </td>
+                         </tr>
+                         <tr>
+                            <td>
+                                PULSO <t:textfield t:id="examen_fisico_PULSO" size="3"/>
+                            </td>
+                         </tr>
+		 </table>
+                <table border='0' bgcolor="#bfccff" width="100%">
+                        <tr>
+                            <td>
+                                <B>MAMAS</B> <t:checkbox t:id="examen_fisico_MAMAS_TUMORACION"/>TUMORACION
+                            </td>
+                         </tr>
+		 </table>
+                <table border='0' bgcolor="#bfccff" width="100%">
+                        <tr>
+                            <td>
+                                <B>PLEUROPULMONAR</B>
+                            </td>
+                            <td>
+                                 <t:checkbox t:id="examen_fisico_PLEUROPULMONAR_MAV"/>MAV <t:textfield t:id="examen_fisico_PLEUROPULMONAR" size="80"/>
+                            </td>
+                         </tr>
+		 </table>
+                <table border='0' bgcolor="#bfccff" width="100%">
+                        <tr>
+                            <td width="10%">
+                                <B>VENOSO</B>
+                            </td>
+                            <td>
+                                <t:checkbox t:id="examen_fisico_VENOSO_VARICES"/>VARICES
+                            </td>
+                         </tr>
+		 </table>
+                <table border='0' bgcolor="#bfccff" width="100%">
+                        <tr valign="middle">
+                            <td width="10%">
+                                <B>ABDOMEN</B>
+                            </td>
+                            <td>
+                                CICATRIZ<t:textfield t:id="examen_fisico_ABDOMEN_CICATRIZ" size="20"/>
+                                <t:checkbox t:id="examen_fisico_ABDOMEN_BLANDO"/>BLANDO
+                                <t:checkbox t:id="examen_fisico_ABDOMEN_DEPRESIBLE"/>DEPRESIBLE
+                                <t:checkbox t:id="examen_fisico_ABDOMEN_INDOLORO"/>INDOLORO
+                            </td>
+                            <td>
+                                <t:checkbox t:id="examen_fisico_ABDOMEN_TUMOR"/>TUMOR
+                            </td>
+                            <td>
+                                    <table border="0" cellpadding="0" cellspacing="0">
+                                        <tr>
+                                            <td>
+                                                <img src="../images/abdomen1.ok.png" />
+                                            </td>
+                                            <td>
+                                                <img src="../images/abdomen2.ok.png" />
+                                            </td>
+                                            <td>
+                                                <img src="../images/abdomen3.ok.png" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <img src="../images/abdomen4.ok.png" />
+                                            </td>
+                                            <td>
+                                                <img src="../images/abdomen5.ok.png" />
+                                            </td>
+                                            <td>
+                                                <img src="../images/abdomen6.ok.png" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <img src="../images/abdomen7.ok.png" />
+                                            </td>
+                                            <td>
+                                                <img src="../images/abdomen8.ok.png" />
+                                            </td>
+                                            <td>
+                                                <img src="../images/abdomen9.ok.png" />
+                                            </td>
+                                        </tr>
+                                    </table>
+                            </td>
+                         </tr>
+		 </table>
+                <table border='0' bgcolor="#bfccff" width="100%">
+                        <tr>
+                            <td>
+                                <B>OSTEOARTICULAR</B>
+                                 <t:checkbox t:id="examen_fisico_OSTEOARTICULAR"/>
+                            </td>
+                            <td>
+                                <B>SECTOR MUSCULAR</B>
+                                 <t:checkbox t:id="examen_fisico_MUSCULAR"/>
+                            </td>
+                         </tr>
+		 </table>
+                <table border='0' bgcolor="#bfccff" width="100%">
+                        <tr>
+                            <td colspan="6"><b>VISION</b></td>
+                        </tr>
+                        <tr>
+                            <td width="10%">
+                                <B>DE LEJOS</B>
+                            </td>
+                            <td>
+                                    O.D.<t:textfield t:id="vision_OD" size="4"/> 
+                                    O.I<t:textfield t:id="vision_OI" size="4"/>
+                            </td>
+                            <td width="15%">
+                                <B>CON CORRECCION</B>
+                            </td>
+                            <td>
+                                    O.D.<t:textfield t:id="vision_CC_OD" size="4"/>
+                                    O.I.<t:textfield t:id="vision_CC_OI" size="4"/>
+                            </td>
+                         </tr>
+		 </table>
+                <table border='0' bgcolor="#bfccff" width="100%">
+                        <tr>
+                            <td>
+                                <B>VAC ATT</B><t:checkbox t:id="vacunaATT"/>
+                                              <t:DateField t:id="vacunaATT_VENCE" size="10" t:format="dd/MM/yyyy"/>
+                            </td>
+                            <td>
+                                    <B>VAC GRIPE</B><t:checkbox t:id="vacunaGRIPE"/>
+                            </td>
+                            <td>
+                                    <B>VAC HEPATITIS A</B><t:checkbox t:id="vacunaHEPATITISA"/>
+                            </td>
+                            <td>
+                                    <B>VAC HEPATITIS B</B><t:checkbox t:id="vacunaHEPATITISB"/>
+                            </td>
+                            <td>
+                                    <B>VAC TIFOIDEA</B><t:checkbox t:id="vacunaTIFOIDEA"/>
+                            </td>
+                         </tr>
+		 </table>
+                <table border='0' bgcolor="#bfccff" width="100%">
+                        <tr>
+                            <td>
+                                <B>REALIZA ACTIVIDADES FISICAS</B>
+                                 <t:checkbox t:id="actividadFISICA"/>
+                            </td>
+                         </tr>
+		 </table>
+                <table border='0' bgcolor="#bfccff" width="100%">
+                        <tr>
+                            <td>
+                                <B>CONTROLES MEDICOS QUE REALIZA</B>
+                                 <t:textfield t:id="controlesMEDICOS" size="80"/>
+                            </td>
+                         </tr>
+		 </table>
+                <table border='0' bgcolor="#bfccff" width="100%">
+                        <tr>
+                            <td>
+                                <B>NUESTRAS SUGERENCIAS</B>
+                            </td>
+                            <td>
+                                    CONSULTA MEDICA<t:checkbox t:id="sugerencias_CONSULTAMEDICA"/>
+                            </td>
+                            <td>
+                                    EXAMEN LABORATORIO<t:checkbox t:id="sugerencias_EXAMENLABORATORIO"/>
+                            </td>
+                            <td>
+                                    CONTROL DE PESO<t:checkbox t:id="sugerencias_CONTROLPESO"/>
+                            </td>
+                            <td>
+                                    EJERCICIOS<t:checkbox t:id="sugerencias_EJERCICIOS"/>
+                            </td>
+                         </tr>
+		 </table>
+                <table border='0' bgcolor="#bfccff" width="100%">
+                        <tr>
+                            <td>
+                                <B>IMPRESION GENERAL</B>
+                                 <t:textfield t:id="impresiongeneral" size="80"/>
+                            </td>
+                         </tr>
+		 </table>
+                <table border='0' bgcolor="#bfccff" width="100%">
+                        <tr>
+                            <td>
+                                <B>OBSERVACIONES</B>
+                            </td>
+                            <td>
+
+                                 <t:textarea t:id="observaciones" cols="80" rows="5"/>
+                            </td>
+                         </tr>
+		 </table>
+                <table border='0' bgcolor="#bfccff" width="100%">
+                        <tr>
+                            <td>
+                                    <t:checkbox t:id="cartamedico"/>CARTA MEDICO TRATANTE
+                            </td>
+                            <td>
+                                    <t:checkbox t:id="negado"/>NEGADO CAUSA MEDICA
+                            </td>
+                            <td>
+                                    <t:select t:id="vigenciameses" model="literal:1=24 MESES,2=12 MESES,3=6 MESES"/>PLAZO VIGENCIA
+                            </td>
+                         </tr>
+		 </table>
+                 <table border="0" width="100%" bgcolor="#ffffff">
+                     <tr>
+                        <td align="center">
+
+                            <!-- <a t:type="actionlink" t:id="almacenar" href="#">Almacenar</a> -->
+                            <input type="submit" t:type="submit" t:id="almacenar" value="Almacenar"/>
+                        </td>
+                     </tr>
+                 </table>
+  </form>
+</t:zone>
+</div>
+</body>
+</html>

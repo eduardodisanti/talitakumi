@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="analisislaboratorio" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="30" rightMargin="30" topMargin="20" bottomMargin="20">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<parameter name="episodiodesde" class="java.lang.Integer"/>
+	<parameter name="episodiohasta" class="java.lang.Integer"/>
+	<parameter name="fechadesde" class="java.util.Date"/>
+	<parameter name="fechahasta" class="java.util.Date"/>
+	<parameter name="cliente" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[select analisis.id, analisis.valorrefminimo, analisis.valorrefmaximo, estudios.id as estid,
+       estudios.descripcion as estdesc, analisis.descripcion as anadesc,
+       valorhallado, tiporesultado, documento, analisis.unidades, episodios.fecha,
+       personas.apellidos, personas.nombres, episodios.id as epiid
+from estudios, estudioshechos, analisishechos, analisis, personas, episodios
+where episodio>=$P{episodiodesde} and
+      episodio <=$P{episodiohasta} and
+      estudios.id = estudioshechos.estudio and
+      episodios.cliente = $P{cliente} and
+      episodios.fecha >= $P{fechadesde} and
+      episodios.fecha <= $P{fechahasta} and
+      analisishechos.estudiohecho = estudioshechos.id and
+      analisishechos.analisis = analisis.id and
+      episodios.paciente = personas.id and
+      episodio = episodios.id and
+      analisishechos.valorhallado != ''
+      group by personas.id, analisis.id
+order by personas.apellidos, personas.nombres, personas.documento, estid, analisis.id]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer"/>
+	<field name="valorrefminimo" class="java.lang.String"/>
+	<field name="valorrefmaximo" class="java.lang.String"/>
+	<field name="estid" class="java.lang.Integer"/>
+	<field name="estdesc" class="java.lang.String"/>
+	<field name="anadesc" class="java.lang.String"/>
+	<field name="valorhallado" class="java.lang.String"/>
+	<field name="tiporesultado" class="java.lang.String"/>
+	<field name="documento" class="java.lang.Integer"/>
+	<field name="unidades" class="java.lang.String"/>
+	<field name="fecha" class="java.sql.Date"/>
+	<field name="apellidos" class="java.lang.String"/>
+	<field name="nombres" class="java.lang.String"/>
+	<field name="epiid" class="java.lang.Integer"/>
+	<group name="PERSONA" isStartNewPage="true">
+		<groupExpression><![CDATA[($F{documento})]]></groupExpression>
+		<groupHeader>
+			<band height="124" splitType="Stretch">
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField" x="270" y="0" width="85" height="18"/>
+					<textElement>
+						<font fontName="SansSerif" size="7"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{apellidos}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField" x="355" y="0" width="49" height="18"/>
+					<textElement>
+						<font fontName="SansSerif" size="7"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{nombres}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField" x="280" y="50" width="100" height="18"/>
+					<textElement/>
+					<textFieldExpression class="java.lang.Integer"><![CDATA[$F{documento}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField" x="473" y="51" width="57" height="18"/>
+					<textElement/>
+					<textFieldExpression class="java.lang.Integer"><![CDATA[$F{epiid}]]></textFieldExpression>
+				</textField>
+				<textField pattern="dd/MM/yyyy" isBlankWhenNull="false">
+					<reportElement key="textField" x="442" y="-1" width="66" height="17"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression class="java.util.Date"><![CDATA[$F{fecha}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement key="staticText-7" mode="Opaque" x="142" y="84" width="210" height="20"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<text><![CDATA[ANALISIS DE LABORATORIO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="staticText-8" x="0" y="108" width="200" height="16"/>
+					<textElement/>
+					<text><![CDATA[EXAMEN]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="staticText-9" x="200" y="108" width="137" height="15"/>
+					<textElement/>
+					<text><![CDATA[VALOR HALLADO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="staticText-10" x="340" y="108" width="190" height="14"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[VALOR DE REFERENCIA]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="1" splitType="Stretch"/>
+		</groupFooter>
+	</group>
+	<group name="ESTUDIO">
+		<groupExpression><![CDATA[($F{estdesc})]]></groupExpression>
+		<groupHeader>
+			<band height="20" splitType="Stretch">
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField" x="0" y="0" width="190" height="18"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{estdesc}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement key="line-1" x="0" y="0" width="530" height="1"/>
+				</line>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band splitType="Stretch"/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<printWhenExpression><![CDATA[new java.lang.Boolean(!$F{anadesc}.equals("HEXAGON"))]]></printWhenExpression>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField" x="30" y="0" width="158" height="18"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{anadesc}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField" x="188" y="0" width="126" height="18"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{valorhallado}.equals("true") ? new java.lang.String("POSITIVO")
+ : $F{valorhallado}.equals("false") ?  new java.lang.String("NEGATIVO")
+     : $F{valorhallado}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField" x="319" y="0" width="83" height="18"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{valorrefminimo}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField" x="420" y="0" width="60" height="18"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{valorrefmaximo}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField" x="480" y="0" width="50" height="18"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{unidades}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-6" x="400" y="0" width="20" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[-]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="22" splitType="Stretch">
+			<staticText>
+				<reportElement key="staticText-5" mode="Opaque" x="368" y="8" width="166" height="14"/>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[Validado por Dra. Silvia Pigni]]></text>
+			</staticText>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField" x="27" y="3" width="100" height="18"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-11" x="4" y="4" width="19" height="17"/>
+				<textElement/>
+				<text><![CDATA[#]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

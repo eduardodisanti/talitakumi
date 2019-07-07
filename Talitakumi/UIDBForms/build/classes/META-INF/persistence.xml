@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="1.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">
+  <persistence-unit name="talitakumiPU" transaction-type="RESOURCE_LOCAL">
+    <provider>oracle.toplink.essentials.PersistenceProvider</provider>
+    <class>talitakumi.admin.Usuarios</class>
+    <class>talitakumi.admin.Medicos</class>
+    <class>talitakumi.admin.Enfermedades</class>
+    <class>talitakumi.admin.Medicamentos</class>
+    <class>talitakumi.admin.Consultorios</class>
+    <class>talitakumi.admin.Personas</class>
+    <class>talitakumi.admin.Consultoriosactivos</class>
+    <class>talitakumi.admin.Clientes</class>
+    <class>talitakumi.admin.Procedencias</class>
+    <class>talitakumi.admin.Tipodeactividad</class>
+    <class>talitakumi.admin.Estudios</class>
+    <class>talitakumi.admin.Vacunas</class>
+    <properties>
+      <property name="toplink.jdbc.user" value="root"/>
+      <property name="toplink.jdbc.password" value="root"/>
+      <property name="toplink.jdbc.url" value="jdbc:mysql://angus:3306/talitakumi"/>
+      <property name="toplink.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+    </properties>
+  </persistence-unit>
+</persistence>

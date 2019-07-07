@@ -1,0 +1,1324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="diagnosticosanitario" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="224"/>
+	<parameter name="empresa" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="fun_tot_hom" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="fun_tot_muj" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="fun_hom_18" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="fun_muj_18" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="fun_hom_40" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="fun_muj_40" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="fun_hom_50" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="fun_muj_50" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="tal_hom_170" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="tal_muj_170" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="tal_hom_175" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="tal_muj_175" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="tal_hom_180" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="tal_muj_180" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="tal_hom_185" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="tal_muj_185" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="fr_tab_hom" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="fr_tab_muj" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="fr_hta_hom_18" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="fr_hta_muj_18" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="fr_hta_hom_40" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="fr_hta_muj_40" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="fr_hta_hom_50" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="fr_hta_muj_50" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="fr_sed_hom" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="fr_sed_muj" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="fr_imc_hom_ade_18" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="fr_imc_muj_ade_18" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="fr_imc_hom_ade_40" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="fr_imc_muj_ade_40" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="fr_imc_hom_ade_50" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="fr_imc_muj_ade_50" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="fr_imc_hom_sal_18" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="fr_imc_muj_sal_18" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="fr_imc_hom_sal_40" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="fr_imc_muj_sal_40" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="fr_imc_hom_sal_50" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="fr_imc_muj_sal_50" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="fr_imc_hom_sob_18" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="fr_imc_muj_sob_18" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="fr_imc_hom_sob_40" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="fr_imc_muj_sob_40" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="fr_imc_hom_sob_50" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="fr_imc_muj_sob_50" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="fr_imc_hom_obe_18" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="fr_imc_muj_obe_18" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="fr_imc_hom_obe_40" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="fr_imc_muj_obe_40" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="fr_imc_hom_obe_50" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="fr_imc_muj_obe_50" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="med_pap_con" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="med_pap_sin" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="med_mam_con" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="med_mam_sin" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="exa_odo_sin" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="exa_odo_con" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="exa_odo_neg" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="exa_gli_nom" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="exa_gli_alt" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="exa_col_nom" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="exa_col_alt" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="exa_ori_nom" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="exa_ori_alt" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="exa_vdr_nom" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="exa_vdr_alt" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="res_tab_18" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="res_tab_40" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="res_tab_50" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="res_col_18" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="res_col_40" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="res_col_50" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="res_hta_18" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="res_hta_40" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="res_hta_50" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="res_gli_18" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="res_gli_40" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="res_gli_50" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="res_imc_18" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="res_imc_40" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="res_imc_50" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="res_sed_18" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="res_sed_40" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="res_sed_50" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="fun_tot" class="java.lang.Integer" isForPrompting="false"/>
+	<variable name="h18" class="java.lang.Integer">
+		<variableExpression><![CDATA[new Integer($P{fun_hom_18}.intValue() + $P{fun_muj_18}.intValue())]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="24" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="20" backcolor="#CCCCCC"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="79" y="0" width="143" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[DIAGNOSTICO SANITARIO]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="222" y="2" width="211" height="18"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{empresa}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="433" y="0" width="122" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="62" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MEDILAB]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="778" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="129" height="12"/>
+				<textElement verticalAlignment="Top">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Funcionarios estudiados]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="433" y="0" width="56" height="12"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Mujeres]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="360" y="0" width="72" height="12"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{fun_tot_hom}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="489" y="0" width="66" height="12"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{fun_tot_muj}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="302" y="0" width="56" height="12"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Hombres]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="13" width="129" height="12"/>
+				<textElement verticalAlignment="Top">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Rango etareo / sexo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="187" y="14" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hombres]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="245" y="14" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Mujeres]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="302" y="14" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="360" y="14" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[% genero]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="418" y="14" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[% total]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="187" y="26" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{fun_hom_18}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="129" y="1" width="58" height="12"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{fun_tot}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="187" y="1" width="115" height="12"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Distribución por sexo]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="245" y="26" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{fun_muj_18}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="303" y="26" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[new java.lang.Integer($P{fun_hom_18}.intValue() + $P{fun_muj_18}.intValue())]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="361" y="26" width="57" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[new Integer($P{fun_hom_18}.intValue() / ($P{fun_hom_18}.intValue() + $P{fun_hom_40}.intValue() + $P{fun_hom_50}.intValue()))]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="25" width="129" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[18 a 39]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="37" width="129" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[40 a 49]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="49" width="129" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[50 y más]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="303" y="38" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[new Integer($P{fun_hom_40}.intValue() + $P{fun_muj_40}.intValue())]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="187" y="38" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{fun_hom_40}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="245" y="38" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{fun_muj_40}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="361" y="38" width="57" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[new Integer($P{fun_hom_40}.intValue() / ($P{fun_hom_18}.intValue() + $P{fun_hom_40}.intValue() + $P{fun_hom_50}.intValue()))]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="303" y="50" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[new Integer($P{fun_hom_50}.intValue() + $P{fun_muj_50}.intValue())]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="187" y="50" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{fun_hom_50}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="245" y="50" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{fun_muj_50}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="361" y="50" width="57" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[new Integer($P{fun_hom_50}.intValue() / ($P{fun_hom_18}.intValue() + $P{fun_hom_40}.intValue() + $P{fun_hom_50}.intValue()))]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="419" y="50" width="57" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[new Integer(100 * ($P{fun_hom_50}.intValue() + $P{fun_muj_50}.intValue()) / $P{fun_tot}.intValue())]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="419" y="38" width="57" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[new Integer(100 * ($P{fun_hom_40}.intValue() + $P{fun_muj_40}.intValue()) / $P{fun_tot}.intValue())]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="419" y="26" width="57" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[new Integer(100 * ($P{fun_hom_18}.intValue() + $P{fun_muj_18}.intValue()) / $P{fun_tot}.intValue())]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="67" width="153" height="12"/>
+				<textElement verticalAlignment="Top">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Talla - Medida antropométrica]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="80" width="129" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[<= 1.70]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="92" width="129" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[170 y 1.75]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="188" y="81" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{tal_hom_170}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="188" y="105" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{tal_hom_180}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="3" y="104" width="129" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[1.75 y 1.80]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="246" y="81" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{tal_muj_170}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="188" y="93" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{tal_hom_175}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="246" y="93" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{tal_muj_175}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="246" y="105" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{tal_hom_180}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="3" y="116" width="129" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[> 1.85]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="188" y="117" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{tal_hom_185}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="246" y="117" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{tal_muj_185}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="134" width="129" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[VARIABLES MÉDICAS]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="247" y="154" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{fr_tab_muj}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="189" y="154" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{fr_tab_hom}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="154" width="165" height="12"/>
+				<textElement verticalAlignment="Top">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FACTOR DE RIESGO / TABACO]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="246" y="231" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{fr_sed_muj}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="188" y="231" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{fr_sed_hom}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="231" width="184" height="12"/>
+				<textElement verticalAlignment="Top">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FACTOR DE RIESGO / SEDENTARISMO]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="188" y="213" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{fr_hta_hom_50}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="3" y="212" width="129" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[50 y más]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="246" y="189" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{fr_hta_muj_18}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="246" y="201" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{fr_hta_muj_40}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="3" y="188" width="129" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[18 a 39]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="200" width="129" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[40 a 49]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="188" y="189" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{fr_hta_hom_18}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="188" y="201" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{fr_hta_hom_40}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="246" y="213" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{fr_hta_muj_50}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="175" width="221" height="12"/>
+				<textElement verticalAlignment="Top">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FACTOR DE RIESGO / HIPERTENSION ATERIAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="20" y="290" width="167" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[50 y más]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="248" y="291" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{fr_imc_muj_ade_50}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="190" y="267" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{fr_imc_hom_ade_18}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="23" y="278" width="164" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[40 a 49]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="190" y="279" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{fr_imc_hom_ade_40}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="116" y="266" width="70" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[18 a 39]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="190" y="291" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{fr_imc_hom_ade_50}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="3" y="254" width="221" height="12"/>
+				<textElement verticalAlignment="Top">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FACTOR DE RIESGO / I.M.C]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="248" y="267" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{fr_imc_muj_ade_18}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="248" y="279" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{fr_imc_muj_ade_40}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="5" y="267" width="106" height="14"/>
+				<textElement textAlignment="Center">
+					<font isItalic="true"/>
+				</textElement>
+				<text><![CDATA[ADELGAZADO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="326" width="182" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[50 y más]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="248" y="303" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{fr_imc_muj_sal_18}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="190" y="327" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{fr_imc_hom_sal_50}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="4" y="303" width="102" height="14"/>
+				<textElement textAlignment="Center">
+					<font isItalic="true"/>
+				</textElement>
+				<text><![CDATA[SALUDABLE]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="190" y="315" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{fr_imc_hom_sal_40}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="248" y="315" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{fr_imc_muj_sal_40}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="190" y="303" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{fr_imc_hom_sal_18}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="111" y="302" width="76" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[18 a 39]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="16" y="314" width="169" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[40 a 49]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="248" y="327" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{fr_imc_muj_sal_50}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="4" y="363" width="181" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[50 y más]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="248" y="340" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{fr_imc_muj_sob_18}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="190" y="364" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{fr_imc_hom_sob_50}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="4" y="340" width="102" height="14"/>
+				<textElement textAlignment="Center">
+					<font isItalic="true"/>
+				</textElement>
+				<text><![CDATA[SOBREPESO]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="190" y="352" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{fr_imc_hom_sob_40}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="248" y="352" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{fr_imc_muj_sob_40}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="190" y="340" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{fr_imc_hom_sob_18}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="106" y="339" width="79" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[18 a 39]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="351" width="181" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[40 a 49]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="248" y="364" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{fr_imc_muj_sob_50}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="5" y="398" width="180" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[50 y más]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="249" y="375" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{fr_imc_muj_obe_18}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="191" y="399" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{fr_imc_hom_obe_50}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="5" y="375" width="101" height="14"/>
+				<textElement textAlignment="Center">
+					<font isItalic="true"/>
+				</textElement>
+				<text><![CDATA[OBESO]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="191" y="387" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{fr_imc_hom_obe_40}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="249" y="387" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{fr_imc_muj_obe_40}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="191" y="375" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{fr_imc_hom_obe_18}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="106" y="374" width="79" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[18 a 39]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="386" width="180" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[40 a 49]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="249" y="399" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{fr_imc_muj_obe_50}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="422" width="247" height="12"/>
+				<textElement verticalAlignment="Top">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MEDIDAS DE PREVENCION SECUNDARIA - MUJERES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="41" y="436" width="113" height="12"/>
+				<textElement textAlignment="Center">
+					<font size="9" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[CON PAP]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="41" y="447" width="113" height="12"/>
+				<textElement textAlignment="Center">
+					<font size="9" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[SIN PAP]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="247" y="434" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{med_pap_con}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="247" y="446" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{med_pap_sin}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="41" y="470" width="113" height="12"/>
+				<textElement textAlignment="Center">
+					<font size="9" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[SIN MAMOGRAFIA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="247" y="469" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{med_mam_sin}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="247" y="457" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{med_mam_con}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="41" y="459" width="113" height="12"/>
+				<textElement textAlignment="Center">
+					<font size="9" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[CON MAMOGRAFIA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="494" width="242" height="12"/>
+				<textElement verticalAlignment="Top">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MEDIDAS DE PREVENCION SECUNDARIA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="41" y="532" width="113" height="12"/>
+				<textElement textAlignment="Center">
+					<font size="9" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Con observaciones]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="247" y="542" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{exa_odo_neg}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="41" y="544" width="113" height="12"/>
+				<textElement textAlignment="Center">
+					<font size="9" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Negado]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="247" y="531" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{exa_odo_con}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="247" y="519" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{exa_odo_sin}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="41" y="521" width="113" height="12"/>
+				<textElement textAlignment="Center">
+					<font size="9" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Sin observaciones]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="507" width="129" height="12"/>
+				<textElement textAlignment="Center">
+					<font size="9" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[CHEQUEO ODONTOLÓGICO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="573" width="129" height="12"/>
+				<textElement textAlignment="Center">
+					<font size="9" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[EXAMENES DE LABORATORIO]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="247" y="597" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{exa_gli_alt}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="247" y="585" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{exa_gli_nom}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="55" y="597" width="149" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[alterado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="167" y="585" width="37" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[normal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="585" width="142" height="14"/>
+				<textElement textAlignment="Center">
+					<font isItalic="true"/>
+				</textElement>
+				<text><![CDATA[GLICEMIA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="55" y="620" width="149" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[alterado]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="248" y="608" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{exa_col_nom}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="4" y="608" width="163" height="14"/>
+				<textElement textAlignment="Center">
+					<font isItalic="true"/>
+				</textElement>
+				<text><![CDATA[COLESTEROL TOTAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="167" y="608" width="37" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[normal]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="248" y="620" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{exa_col_alt}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="248" y="631" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{exa_ori_nom}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="55" y="643" width="149" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[alterado]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="248" y="643" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{exa_ori_alt}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="167" y="631" width="37" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[normal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="631" width="163" height="14"/>
+				<textElement textAlignment="Center">
+					<font isItalic="true"/>
+				</textElement>
+				<text><![CDATA[ORINA COMPLETA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="248" y="655" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{exa_vdr_nom}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="55" y="667" width="149" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[alterado]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="248" y="667" width="58" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{exa_vdr_alt}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="167" y="655" width="37" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[normal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="655" width="163" height="14"/>
+				<textElement textAlignment="Center">
+					<font isItalic="true"/>
+				</textElement>
+				<text><![CDATA[VDRL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="695" width="242" height="12"/>
+				<textElement verticalAlignment="Top">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RESUMEN DE FACTORES DE RIESGO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="756" width="93" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[50 y más]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="732" width="94" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[18 a 39]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="744" width="93" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[40 a 49]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="94" y="707" width="460" height="20" backcolor="#CCCCCC"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="108" y="711" width="79" height="12"/>
+				<textElement textAlignment="Center">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TABAQUISMO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="190" y="711" width="79" height="12"/>
+				<textElement textAlignment="Center">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COLESTEROL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="279" y="711" width="79" height="12"/>
+				<textElement textAlignment="Center">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[H.T.A]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="397" y="711" width="79" height="12"/>
+				<textElement textAlignment="Center">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[I.M.C]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="475" y="711" width="79" height="12"/>
+				<textElement textAlignment="Center">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SEDENT.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="106" y="732" width="79" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{res_tab_18}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="106" y="744" width="79" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{res_tab_40}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="106" y="756" width="79" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{res_tab_50}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="186" y="732" width="79" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{res_col_18}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="186" y="744" width="79" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{res_col_40}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="186" y="756" width="79" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{res_col_50}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="265" y="732" width="79" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{res_hta_18}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="265" y="744" width="79" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{res_hta_40}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="265" y="756" width="79" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{res_hta_50}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="408" y="732" width="66" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{res_imc_18}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="408" y="744" width="66" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{res_imc_40}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="408" y="756" width="66" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{res_imc_50}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="475" y="732" width="79" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{res_sed_18}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="475" y="744" width="79" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{res_sed_40}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="475" y="756" width="79" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{res_sed_50}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="345" y="732" width="63" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{res_gli_18}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="345" y="756" width="63" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{res_gli_50}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="345" y="744" width="63" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{res_gli_40}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="339" y="711" width="79" height="12"/>
+				<textElement textAlignment="Center">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[GLICEMIA]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

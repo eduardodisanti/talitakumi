@@ -1,0 +1,2109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Estadistica de Actividades" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="535" leftMargin="30" rightMargin="30" topMargin="20" bottomMargin="20">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<parameter name="fecha" class="java.util.Date"/>
+	<parameter name="vigencia_medico" class="java.lang.Integer"/>
+	<parameter name="carta_medico_tratante" class="java.lang.Object"/>
+	<parameter name="negado_causa_medica" class="java.lang.Object"/>
+	<parameter name="fecha_expedido" class="java.util.Date"/>
+	<parameter name="impresion_general" class="java.lang.String"/>
+	<parameter name="sug_control_peso" class="java.lang.String"/>
+	<parameter name="sug_ejercicios" class="java.lang.Object"/>
+	<parameter name="sug_laboratorio" class="java.lang.Object"/>
+	<parameter name="vac_att" class="java.util.Date"/>
+	<parameter name="pap_vence" class="java.util.Date"/>
+	<parameter name="pap_clinica" class="java.lang.String"/>
+	<parameter name="pap_medico" class="java.lang.String"/>
+	<parameter name="mamo_vence" class="java.util.Date"/>
+	<parameter name="mamo_clinica" class="java.lang.String"/>
+	<parameter name="mamo_medico" class="java.lang.String"/>
+	<parameter name="A1" class="java.lang.String"/>
+	<parameter name="A2" class="java.lang.String"/>
+	<parameter name="A3" class="java.lang.String"/>
+	<parameter name="A4" class="java.lang.String"/>
+	<parameter name="A5" class="java.lang.String"/>
+	<parameter name="A6" class="java.lang.String"/>
+	<parameter name="A7" class="java.lang.String"/>
+	<parameter name="A8" class="java.lang.String"/>
+	<parameter name="A9" class="java.lang.String"/>
+	<parameter name="A20" class="java.lang.String"/>
+	<parameter name="A21" class="java.lang.String"/>
+	<parameter name="A22" class="java.lang.String"/>
+	<parameter name="A14" class="java.lang.String"/>
+	<parameter name="A10" class="java.lang.String"/>
+	<parameter name="A11" class="java.lang.String"/>
+	<parameter name="A12" class="java.lang.String"/>
+	<parameter name="A24" class="java.lang.String"/>
+	<parameter name="do_estudios_medicos" class="java.lang.Boolean"/>
+	<parameter name="do_actividad_fisica" class="java.lang.String"/>
+	<parameter name="episodio" class="java.lang.Integer"/>
+	<parameter name="nombre" class="java.lang.String"/>
+	<parameter name="documento" class="java.lang.Integer"/>
+	<parameter name="telefono" class="java.lang.String"/>
+	<parameter name="edad" class="java.lang.Integer"/>
+	<parameter name="fechanac" class="java.util.Date"/>
+	<parameter name="sexo" class="java.lang.String"/>
+	<parameter name="ant_fam_hta" class="java.lang.Integer"/>
+	<parameter name="ant_fam_diabetes" class="java.lang.Integer"/>
+	<parameter name="V1" class="java.lang.Boolean"/>
+	<parameter name="V2" class="java.lang.Boolean"/>
+	<parameter name="ant_per_medicamentos" class="java.lang.String"/>
+	<parameter name="ant_per_alergia_alimentos" class="java.lang.Boolean"/>
+	<parameter name="ant_per_alergia_polvos" class="java.lang.Boolean"/>
+	<parameter name="ant_per_alergia_medicamentos" class="java.lang.Boolean"/>
+	<parameter name="ant_per_alergia_otros" class="java.lang.Boolean"/>
+	<parameter name="ant_per_diabetes" class="java.lang.Boolean"/>
+	<parameter name="ant_per_diabetes_tipo" class="java.lang.Integer"/>
+	<parameter name="ant_tiroideos_hiper" class="java.lang.Boolean"/>
+	<parameter name="ant_tiroideos_hipo" class="java.lang.Boolean"/>
+	<parameter name="ant_per_cardio_palpitaciones" class="java.lang.Boolean"/>
+	<parameter name="ant_per_cardio_taquicardia" class="java.lang.Boolean"/>
+	<parameter name="ant_per_cardio_fiebre_reumatica" class="java.lang.Boolean"/>
+	<parameter name="ant_per_cardio_otros" class="java.lang.Boolean"/>
+	<parameter name="ant_per_cardio_arritmias" class="java.lang.Boolean"/>
+	<parameter name="ant_per_cardio_arritmia" class="java.lang.Boolean"/>
+	<parameter name="ant_per_cardio_soplo" class="java.lang.Boolean"/>
+	<parameter name="ant_per_cardio_fiebrereumatica" class="java.lang.Boolean"/>
+	<parameter name="ant_per_cardio_hta" class="java.lang.Boolean"/>
+	<parameter name="ant_per_cardio_infartomiocardio" class="java.lang.Boolean"/>
+	<parameter name="ant_per_digestivos_litiasisvesicular" class="java.lang.Boolean"/>
+	<parameter name="ant_per_digestivos_litiasisrenal" class="java.lang.Boolean"/>
+	<parameter name="ant_per_digestivos_colicosnefriticos" class="java.lang.Boolean"/>
+	<parameter name="ant_per_digestivos_infeccionurinariabaja" class="java.lang.Boolean"/>
+	<parameter name="ant_per_digestivos_infeccionrinon" class="java.lang.Boolean"/>
+	<parameter name="ant_per_digestivos_hemorroides" class="java.lang.Boolean"/>
+	<parameter name="ant_per_digestivos_alteraciones_transito" class="java.lang.Boolean"/>
+	<parameter name="ant_per_digestivos_diverticulos" class="java.lang.Boolean"/>
+	<parameter name="ant_per_digestivos_ulcera" class="java.lang.Boolean"/>
+	<parameter name="ant_per_digestivos_gastritis" class="java.lang.Boolean"/>
+	<parameter name="ant_per_digestivos_hepatitis" class="java.lang.Boolean"/>
+	<parameter name="ant_per_renales_infeccionrinon" class="java.lang.Boolean"/>
+	<parameter name="ant_per_renales_litiasisrenal" class="java.lang.Boolean"/>
+	<parameter name="ant_per_renales_colicosnefriticos" class="java.lang.Boolean"/>
+	<parameter name="ant_per_renales_infeccionurinariabaja" class="java.lang.Boolean"/>
+	<parameter name="ant_per_pleuro_asma" class="java.lang.Boolean"/>
+	<parameter name="ant_per_pleuro_neumopatia" class="java.lang.Boolean"/>
+	<parameter name="ant_per_pleuro_bronquitis" class="java.lang.Boolean"/>
+	<parameter name="ant_per_oseos_fracturas" class="java.lang.Boolean"/>
+	<parameter name="ant_per_oseos_tendinitis" class="java.lang.Boolean"/>
+	<parameter name="ant_per_oseos_lumbalgias" class="java.lang.Boolean"/>
+	<parameter name="ant_per_oseos_artrosis" class="java.lang.Boolean"/>
+	<parameter name="ant_per_oftalmologicos_lentes" class="java.lang.Boolean"/>
+	<parameter name="ant_per_neurologicos_vertigo" class="java.lang.Boolean"/>
+	<parameter name="ant_per_neurologicos_epilepsia" class="java.lang.Boolean"/>
+	<parameter name="ant_per_internaciones" class="java.lang.Boolean"/>
+	<parameter name="ant_per_auditivos" class="java.lang.Boolean"/>
+	<parameter name="ant_per_psiquiatricos" class="java.lang.Boolean"/>
+	<parameter name="ant_per_quirurgicos" class="java.lang.Boolean"/>
+	<parameter name="ant_obst_embarazos" class="java.lang.Boolean"/>
+	<parameter name="ant_obst_abortos" class="java.lang.Boolean"/>
+	<parameter name="ant_obst_diu" class="java.lang.Boolean"/>
+	<parameter name="ant_obst_aco" class="java.lang.Boolean"/>
+	<parameter name="ant_per_venereos" class="java.lang.Boolean"/>
+	<parameter name="ant_piel_mucosasMicosis" class="java.lang.Boolean"/>
+	<parameter name="ant_piel_mucosasAlergias" class="java.lang.Boolean"/>
+	<parameter name="ex_fis_PESO" class="java.lang.Integer"/>
+	<parameter name="ex_fis_TALLA" class="java.lang.Integer"/>
+	<parameter name="ex_fis_PERIMETRO_ABDOMINAL" class="java.lang.Integer"/>
+	<parameter name="ex_fis_IMC" class="java.lang.Integer"/>
+	<parameter name="ex_fis_PULSO" class="java.lang.Integer"/>
+	<parameter name="micosis" class="java.lang.Boolean"/>
+	<parameter name="alergias" class="java.lang.Boolean"/>
+	<parameter name="lunares" class="java.lang.Boolean"/>
+	<parameter name="psoriasis" class="java.lang.Boolean"/>
+	<parameter name="cuelloG1" class="java.lang.Boolean"/>
+	<parameter name="cuelloG2" class="java.lang.Boolean"/>
+	<parameter name="cuelloG3" class="java.lang.Boolean"/>
+	<parameter name="cuello_G4" class="java.lang.Boolean"/>
+	<parameter name="linfoganglionares" class="java.lang.String"/>
+	<parameter name="ritmo_irregular" class="java.lang.Boolean"/>
+	<parameter name="varices" class="java.lang.Boolean"/>
+	<parameter name="mav" class="java.lang.Boolean"/>
+	<parameter name="soplos" class="java.lang.Boolean"/>
+	<parameter name="DISTOLICAST" class="java.lang.Integer"/>
+	<parameter name="SISTOLICAST" class="java.lang.Integer"/>
+	<parameter name="DIASTOLICAPT" class="java.lang.Integer"/>
+	<parameter name="SISTOLICAPT" class="java.lang.Integer"/>
+	<parameter name="tumor_mamas" class="java.lang.Boolean"/>
+	<parameter name="pleuropulmonares" class="java.lang.Boolean"/>
+	<parameter name="cicatriz" class="java.lang.Boolean"/>
+	<parameter name="abdomen_rigido" class="java.lang.Boolean"/>
+	<parameter name="abdomen_doloroso" class="java.lang.Boolean"/>
+	<parameter name="abdomen_indepresible" class="java.lang.Boolean"/>
+	<parameter name="herniaII" class="java.lang.Boolean"/>
+	<parameter name="herniaID" class="java.lang.Boolean"/>
+	<parameter name="fosas_lumbares_lib" class="java.lang.Boolean"/>
+	<parameter name="osteoarticular" class="java.lang.Boolean"/>
+	<parameter name="muscular" class="java.lang.Boolean"/>
+	<parameter name="ojoderechoCC" class="java.lang.Float"/>
+	<parameter name="ojoderechoSC" class="java.lang.Float"/>
+	<parameter name="ojoizquierdoCC" class="java.lang.Float"/>
+	<parameter name="ojoizquierdoSC" class="java.lang.Float"/>
+	<parameter name="ant_fam_otros" class="java.lang.Integer"/>
+	<parameter name="ant_piel_mucosasPsoriasis" class="java.lang.Boolean"/>
+	<parameter name="ant_piel_mucosasLunares" class="java.lang.Boolean"/>
+	<parameter name="ex_fis_FRECUENCIA" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band/>
+	</title>
+	<pageHeader>
+		<band/>
+	</pageHeader>
+	<columnHeader>
+		<band/>
+	</columnHeader>
+	<detail>
+		<band/>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band/>
+	</pageFooter>
+	<lastPageFooter>
+		<band/>
+	</lastPageFooter>
+	<summary>
+		<band height="802">
+			<staticText>
+				<reportElement x="2" y="778" width="155" height="11"/>
+				<textElement>
+					<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[EXAMENES DE LABORATORIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="157" y="778" width="80" height="11"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[GLICEMIA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="279" y="778" width="35" height="11"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[VDRL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="790" width="67" height="11"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[COLESTEROL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="157" y="790" width="80" height="11"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[HDL COLESTEROL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="277" y="790" width="35" height="11"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[ORINA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="394" y="779" width="77" height="11"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[CREATININEMIA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="644" width="79" height="11"/>
+				<textElement>
+					<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[SUGERENCIAS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="93" y="644" width="100" height="11"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[CONTROL DE PESO]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Opaque" x="193" y="644" width="21" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{sug_control_peso}.equals("N") ?
+new java.lang.String("NO") : new java.lang.String("SI")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="376" y="644" width="21" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{sug_laboratorio}.equals("N") ?
+new java.lang.String("NO") : new java.lang.String("SI")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="231" y="644" width="145" height="11"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[EXAMENES DE LABORATORIO]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Opaque" x="510" y="644" width="21" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{sug_ejercicios}.equals("N") ?
+new java.lang.String("NO") : new java.lang.String("SI")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="419" y="644" width="91" height="11"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[EJERCICIO FÍSICO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="668" width="132" height="11"/>
+				<textElement>
+					<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[VACUNA ANTITETÁNICA]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement mode="Opaque" x="152" y="668" width="75" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[$P{vac_att}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="680" width="132" height="11"/>
+				<textElement>
+					<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[PAPANICOLAU]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement mode="Opaque" x="152" y="680" width="75" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[$P{pap_vence}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement mode="Opaque" x="231" y="679" width="159" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{pap_clinica}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement mode="Opaque" x="397" y="680" width="134" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{pap_medico}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="693" width="67" height="11"/>
+				<textElement>
+					<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[MAMOGRAFIA]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement mode="Opaque" x="231" y="692" width="159" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{mamo_clinica}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement mode="Opaque" x="397" y="693" width="134" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{mamo_medico}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement mode="Opaque" x="152" y="692" width="75" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[$P{mamo_vence}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="152" y="657" width="79" height="11"/>
+				<textElement textAlignment="Center">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[VENCIMIENTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="231" y="657" width="152" height="11"/>
+				<textElement textAlignment="Center">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CLINICA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="383" y="657" width="152" height="11"/>
+				<textElement textAlignment="Center">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MEDICO]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="656" width="535" height="1" forecolor="#CCCCCC"/>
+			</line>
+			<line>
+				<reportElement x="1" y="706" width="535" height="1" forecolor="#CCCCCC"/>
+			</line>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="237" y="778" width="39" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{A1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="314" y="777" width="78" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{A3}.equals("true") ? new java.lang.String("REAC") : new java.lang.String("N/R")]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="237" y="790" width="39" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{A14}!=null ?
+$P{A14} : new java.lang.String(" ")]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="314" y="790" width="47" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{A5}.equals("") ? new java.lang.String("LIMPIDO") : $P{A5}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement mode="Opaque" x="472" y="779" width="61" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{A20}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="70" y="791" width="78" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{A2}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="364" y="790" width="33" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{A6}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="402" y="791" width="33" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{A7}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="439" y="791" width="16" height="11" backcolor="#CCCCCC">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{A8}.equals("true"))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[P]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="457" y="791" width="16" height="11" backcolor="#CCCCCC">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{A9}.equals("true"))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[H]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="475" y="791" width="16" height="11" backcolor="#CCCCCC">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{A10}.equals("true"))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[L]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="493" y="791" width="16" height="11" backcolor="#CCCCCC">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{A11}.equals("true"))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[G]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="511" y="791" width="16" height="11" backcolor="#CCCCCC">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{A12}.equals("true"))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[B]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="631" width="144" height="11"/>
+				<textElement>
+					<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[REALIZA ACTIVIDAD FISICA]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement mode="Opaque" x="150" y="631" width="42" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{do_actividad_fisica}
+==null ? new java.lang.String("NO") : new java.lang.String("SI")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="232" y="631" width="111" height="11"/>
+				<textElement>
+					<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[CONTROLES MÉDICOS]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement mode="Opaque" x="347" y="631" width="42" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{do_estudios_medicos}
+==null ? new java.lang.String("SI") : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="707" width="113" height="11"/>
+				<textElement>
+					<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[IMPRESION GENERAL]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Opaque" x="114" y="722" width="422" height="21" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Left">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{impresion_general}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="470" y="759" width="29" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{vigencia_medico}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="383" y="759" width="87" height="11"/>
+				<textElement>
+					<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[PLAZO VIGENCIA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="499" y="759" width="33" height="11"/>
+				<textElement>
+					<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[MESES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="747" width="146" height="11"/>
+				<textElement>
+					<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[CARTA MEDICO TRATANTE :]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Opaque" x="147" y="747" width="27" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{carta_medico_tratante}.equals("N") ?
+new java.lang.String("NO") : new java.lang.String("SI")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="185" y="747" width="90" height="11"/>
+				<textElement>
+					<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[CAUSA MEDICA :]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Opaque" x="275" y="747" width="24" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{negado_causa_medica}.equals("N") ?
+new java.lang.String("NO") : new java.lang.String("SI")]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy">
+				<reportElement mode="Opaque" x="101" y="759" width="100" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[$P{fecha_expedido}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="759" width="100" height="11"/>
+				<textElement>
+					<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[FECHA EXPEDIDO]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="720" width="535" height="1" forecolor="#CCCCCC"/>
+			</line>
+			<staticText>
+				<reportElement x="346" y="28" width="188" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[CARNE DE SALUD]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy">
+				<reportElement mode="Transparent" x="146" y="2" width="100" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Left">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[$P{fecha_expedido}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="94" y="2" width="49" height="11"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Fecha ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="346" y="49" width="52" height="11"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Montevideo]]></text>
+			</staticText>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="398" y="49" width="131" height="11"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement x="399" y="0" width="135" height="28"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code39" drawText="true" checksumRequired="false">
+					<jr:codeExpression><![CDATA[new java.lang.String($P{episodio}+"")]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+			<staticText>
+				<reportElement x="94" y="13" width="49" height="11"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Nombres]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy">
+				<reportElement mode="Transparent" x="144" y="14" width="242" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Left">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{nombre}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="95" y="24" width="53" height="11"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Documento]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="">
+				<reportElement mode="Transparent" x="151" y="24" width="75" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Left">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{documento}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="95" y="35" width="53" height="11"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Edad]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement mode="Transparent" x="151" y="35" width="41" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Left">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{edad}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="193" y="35" width="81" height="11"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Fecha nacimiento]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy">
+				<reportElement mode="Transparent" x="276" y="35" width="70" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Left">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[$P{fechanac}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="68" width="535" height="1" forecolor="#CCCCCC"/>
+			</line>
+			<staticText>
+				<reportElement x="95" y="46" width="53" height="11"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Sexo]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement mode="Transparent" x="151" y="46" width="75" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Left">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{sexo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="74" width="132" height="11"/>
+				<textElement>
+					<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[ANTECEDENTES FAMILIARES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="143" y="74" width="23" height="11"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[HTA]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="171" y="74" width="22" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{ant_fam_hta}!=null ? new java.lang.String("SI") : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="231" y="74" width="51" height="11"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[DIABETES]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="286" y="74" width="22" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{ant_fam_diabetes}!=null ? new java.lang.String("SI") : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="95" width="142" height="11"/>
+				<textElement>
+					<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[ANTECEDENTES PERSONALES]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="201" y="95" width="22" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{V2}!=null ? new java.lang.String("SI") : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="144" y="95" width="51" height="11"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[FUMADOR]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="330" y="95" width="22" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{V1}!=null ? new java.lang.String("SI") : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="231" y="95" width="97" height="11"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[CONSUME ALCOHOL]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement mode="Opaque" x="81" y="114" width="453" height="11" backcolor="#CCCCCC"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{ant_per_medicamentos}==null ? new java.lang.String("NO") : $P{ant_per_medicamentos}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="114" width="79" height="11"/>
+				<textElement>
+					<font size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[MEDICAMENTOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="130" width="79" height="11"/>
+				<textElement>
+					<font size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[ALERGICOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="95" y="130" width="79" height="11"/>
+				<textElement>
+					<font size="8" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[MEDICAMENTOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="223" y="130" width="43" height="11"/>
+				<textElement>
+					<font size="8" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[POLVOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="333" y="130" width="53" height="11"/>
+				<textElement>
+					<font size="8" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[ALIMENTOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="467" y="130" width="32" height="11"/>
+				<textElement>
+					<font size="8" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[OTROS]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="174" y="130" width="27" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{ant_per_alergia_medicamentos}!=null ? new java.lang.String("SI") : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="264" y="130" width="35" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{ant_per_alergia_polvos}!=null ? new java.lang.String("SI") : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="388" y="130" width="35" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{ant_per_alergia_alimentos}!=null ? new java.lang.String("SI") : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="499" y="130" width="35" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{ant_per_alergia_polvos}!=null ? new java.lang.String("SI") : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="145" width="79" height="11"/>
+				<textElement>
+					<font size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[DIABETICOS]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="94" y="145" width="27" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{ant_per_diabetes}!=null ? new java.lang.String("SI") : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="135" y="145" width="36" height="11">
+					<printWhenExpression><![CDATA[$P{ant_per_diabetes}]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[TIPO]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="174" y="145" width="27" height="11" backcolor="#CCCCCC">
+					<printWhenExpression><![CDATA[$P{ant_per_diabetes}]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{ant_per_diabetes_tipo}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="371" y="146" width="34" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{ant_tiroideos_hiper}!=null ? new java.lang.String("SI") : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="221" y="146" width="50" height="11"/>
+				<textElement>
+					<font size="8" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[TIROIDEOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="286" y="146" width="84" height="11"/>
+				<textElement>
+					<font size="8" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[HIPERTIROIDISMO]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="499" y="146" width="35" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{ant_tiroideos_hipo}!=null ? new java.lang.String("SI") : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="413" y="146" width="84" height="11"/>
+				<textElement>
+					<font size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[HIPOTIROIDISMO]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="174" y="162" width="27" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{ant_per_cardio_palpitaciones}!=null ? new java.lang.String("SI") : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="101" y="161" width="68" height="11"/>
+				<textElement>
+					<font size="8" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[PALPITACIONES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="161" width="91" height="11"/>
+				<textElement>
+					<font size="8" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[CARDIOVASCULARES]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="285" y="162" width="27" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{ant_per_cardio_taquicardia}!=null ? new java.lang.String("SI") : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="210" y="162" width="74" height="11"/>
+				<textElement>
+					<font size="8" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[TAQUICARDIA]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="377" y="162" width="27" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{ant_per_cardio_arritmia}!=null ? new java.lang.String("SI") : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="318" y="162" width="51" height="11"/>
+				<textElement>
+					<font size="8" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[ARRITMIA]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="445" y="162" width="27" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{ant_per_cardio_soplo}!=null ? new java.lang.String("SI") : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="410" y="162" width="34" height="11"/>
+				<textElement>
+					<font size="8" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[SOPLO]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="445" y="176" width="27" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{ant_per_cardio_arritmia}!=null ? new java.lang.String("SI") : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="285" y="177" width="27" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{ant_per_cardio_hta}!=null ? new java.lang.String("SI") : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="188" y="177" width="27" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{ant_per_cardio_fiebre_reumatica}!=null ? new java.lang.String("SI") : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="343" y="177" width="98" height="11"/>
+				<textElement>
+					<font size="8" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[INFARTO DE MIOCARDIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="220" y="177" width="62" height="11"/>
+				<textElement>
+					<font size="8" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[H.T.A.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="176" width="86" height="11"/>
+				<textElement>
+					<font size="8" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[FIEBRE REUMATICA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="474" y="175" width="32" height="11"/>
+				<textElement>
+					<font size="8" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[OTROS]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="507" y="175" width="27" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{ant_per_cardio_otros}!=null ? new java.lang.String("SI") : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="337" y="195" width="27" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{ant_per_pleuro_bronquitis}!=null ? new java.lang.String("SI") : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="134" y="195" width="27" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{ant_per_pleuro_asma}!=null ? new java.lang.String("SI") : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="275" y="195" width="59" height="11"/>
+				<textElement>
+					<font size="8" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[BRONQUITIS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="168" y="195" width="74" height="11"/>
+				<textElement>
+					<font size="8" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[NEUMOPATIA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="101" y="194" width="31" height="11"/>
+				<textElement>
+					<font size="8" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[ASMA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="194" width="99" height="11"/>
+				<textElement>
+					<font size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[PLEUROPULMONARES]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="246" y="195" width="27" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{ant_per_pleuro_neumopatia}!=null ? new java.lang.String("SI") : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="199" y="211" width="45" height="11"/>
+				<textElement>
+					<font size="8" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[GASTRITIS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="101" y="210" width="60" height="11"/>
+				<textElement>
+					<font size="8" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[HEPATITIS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="210" width="99" height="11"/>
+				<textElement>
+					<font size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[DIGESTIVOS]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="250" y="211" width="27" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{ant_per_digestivos_gastritis}!=null ? new java.lang.String("SI") : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="337" y="211" width="27" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{ant_per_digestivos_ulcera}!=null ? new java.lang.String("SI") : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="289" y="210" width="43" height="11"/>
+				<textElement>
+					<font size="8" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[ULCERA]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="169" y="210" width="27" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{ant_per_digestivos_hepatitis}!=null ? new java.lang.String("SI") : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="458" y="211" width="27" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{ant_per_digestivos_diverticulos}!=null ? new java.lang.String("SI") : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="366" y="211" width="71" height="11"/>
+				<textElement>
+					<font size="8" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[DIVERTICULOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="101" y="223" width="71" height="11"/>
+				<textElement>
+					<font size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[HEMORROIDES]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="169" y="223" width="27" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{ant_per_digestivos_hemorroides}!=null ? new java.lang.String("SI") : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="199" y="224" width="134" height="11"/>
+				<textElement>
+					<font size="8" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[ALTERACIONES DEL TRANSITO]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="337" y="224" width="27" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{ant_per_digestivos_alteraciones_transito}!=null ? new java.lang.String("SI") : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="367" y="224" width="88" height="11"/>
+				<textElement>
+					<font size="8" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[LITIASIS VESICULAR]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="458" y="224" width="27" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{ant_per_digestivos_litiasisvesicular}!=null ? new java.lang.String("SI") : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="175" y="239" width="50" height="11"/>
+				<textElement>
+					<font size="8" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[CÁLCULOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="47" y="239" width="95" height="11"/>
+				<textElement>
+					<font size="8" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[INFECCION DE RIÑON]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="239" width="42" height="11"/>
+				<textElement>
+					<font size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[RENALES]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="144" y="239" width="27" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{ant_per_renales_infeccionrinon}!=null ? new java.lang.String("SI") : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="228" y="239" width="27" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{ant_per_renales_litiasisrenal}!=null ? new java.lang.String("SI") : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="361" y="239" width="27" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{ant_per_renales_colicosnefriticos}!=null ? new java.lang.String("SI") : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="258" y="239" width="101" height="11"/>
+				<textElement>
+					<font size="8" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[CÓLICOS NEFRITICOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="390" y="239" width="119" height="11"/>
+				<textElement>
+					<font size="8" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[INFECCIÓN URINARIA BAJA]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="509" y="239" width="27" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{ant_per_renales_infeccionurinariabaja}!=null ? new java.lang.String("SI") : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="260" y="259" width="101" height="11"/>
+				<textElement>
+					<font size="8" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[LUMBALGIAS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="259" width="92" height="11"/>
+				<textElement>
+					<font size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[OSTEOARTICULARES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="177" y="259" width="50" height="11"/>
+				<textElement>
+					<font size="8" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[TENDINITIS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="391" y="259" width="45" height="11"/>
+				<textElement>
+					<font size="8" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[ARTROSIS]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="144" y="259" width="27" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{ant_per_oseos_fracturas}!=null ? new java.lang.String("SI") : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="361" y="259" width="27" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{ant_per_oseos_lumbalgias}!=null ? new java.lang.String("SI") : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="96" y="259" width="47" height="11"/>
+				<textElement>
+					<font size="8" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[FRACTURAS]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="438" y="259" width="27" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{ant_per_oseos_artrosis}!=null ? new java.lang.String("SI") : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="228" y="259" width="27" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{ant_per_oseos_tendinitis}!=null ? new java.lang.String("SI") : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="96" y="277" width="47" height="11"/>
+				<textElement>
+					<font size="8" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[USA LENTES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="277" width="92" height="11"/>
+				<textElement>
+					<font size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[OFTALMOLOGICOS]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="144" y="277" width="27" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{ant_per_oftalmologicos_lentes}!=null ? new java.lang.String("SI") : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="97" y="295" width="47" height="11"/>
+				<textElement>
+					<font size="8" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[VERTIGO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="295" width="92" height="11"/>
+				<textElement>
+					<font size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[NEUROLÓGICOS]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="144" y="295" width="27" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{ant_per_neurologicos_vertigo}!=null ? new java.lang.String("SI") : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="181" y="295" width="47" height="11"/>
+				<textElement>
+					<font size="8" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[EPILEPISA]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="228" y="295" width="27" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{ant_per_neurologicos_epilepsia}!=null ? new java.lang.String("SI") : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="309" width="87" height="11"/>
+				<textElement>
+					<font size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[SIQUIATRICOS]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="96" y="310" width="27" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{ant_per_psiquiatricos}!=null ? new java.lang.String("SI") : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="329" y="310" width="27" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{ant_per_quirurgicos}!=null ? new java.lang.String("SI") : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="256" y="310" width="69" height="11"/>
+				<textElement>
+					<font size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[QUIRURGICOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="98" y="327" width="57" height="11"/>
+				<textElement>
+					<font size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[EMBARAZOS]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="157" y="327" width="27" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{ant_obst_embarazos}!=null ? new java.lang.String("SI") : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="225" y="310" width="27" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{ant_per_internaciones}!=null ? new java.lang.String("SI") : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="145" y="309" width="73" height="11"/>
+				<textElement>
+					<font size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[INTERNACIONES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="363" y="310" width="51" height="11"/>
+				<textElement>
+					<font size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[AUDITIVOS]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="416" y="310" width="27" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{ant_per_auditivos}!=null ? new java.lang.String("SI") : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="454" y="310" width="51" height="11"/>
+				<textElement>
+					<font size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[VENEREOS]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="507" y="310" width="27" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{ant_per_venereos}!=null ? new java.lang.String("SI") : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="327" width="92" height="11"/>
+				<textElement>
+					<font size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[OBSTETRICOS]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="251" y="328" width="27" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{ant_obst_abortos}!=null ? new java.lang.String("SI") : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="192" y="327" width="57" height="11"/>
+				<textElement>
+					<font size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[ABORTOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="284" y="328" width="68" height="11"/>
+				<textElement>
+					<font size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[ANTIC. ORALES]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="354" y="328" width="27" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{ant_obst_aco}!=null ? new java.lang.String("SI") : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="411" y="328" width="27" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{ant_obst_diu}!=null ? new java.lang.String("SI") : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="386" y="328" width="24" height="11"/>
+				<textElement>
+					<font size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[DIU]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="345" width="92" height="11"/>
+				<textElement>
+					<font size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[PIEL Y MUCOSAS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="192" y="345" width="57" height="11"/>
+				<textElement>
+					<font size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[ALERGIAS]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="157" y="345" width="27" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{ant_piel_mucosasMicosis}!=null ? new java.lang.String("SI") : new java.lang.String("S/P")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="98" y="345" width="57" height="11"/>
+				<textElement>
+					<font size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[MICOSIS]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="251" y="345" width="27" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{ant_piel_mucosasAlergias}!=null ? new java.lang.String("SI") : new java.lang.String("S/P")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="376" width="90" height="11"/>
+				<textElement>
+					<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[EXÁMEN FÍSICO]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="134" y="376" width="39" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{ex_fis_PESO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="101" y="376" width="31" height="11"/>
+				<textElement>
+					<font size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[PESO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="184" y="376" width="31" height="11"/>
+				<textElement>
+					<font size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[TALLA]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="217" y="376" width="39" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{ex_fis_TALLA}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="493" y="376" width="39" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{ex_fis_PERIMETRO_ABDOMINAL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="266" y="376" width="18" height="11"/>
+				<textElement>
+					<font size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[IMC]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="289" y="376" width="87" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{ex_fis_IMC}.intValue()<20 ? new java.lang.String("PESO BAJO") :
+  $P{ex_fis_IMC}.intValue()>=20 && $P{ex_fis_IMC}.intValue()<25
+
+     ? new java.lang.String("NORMAL") :
+        $P{ex_fis_IMC}.intValue()>=27 && $P{ex_fis_IMC}.intValue()<30
+           ? new java.lang.String("SOBREPESO") :
+              $P{ex_fis_IMC}.intValue()>=30 && $P{ex_fis_IMC}.intValue()<35
+                   ? new java.lang.String("OBESIDAD") :
+                   $P{ex_fis_IMC}.intValue()>35
+                      ? new java.lang.String("OBESIDAD MORBIDA") :
+                            new java.lang.String("S/D")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="383" y="376" width="111" height="11"/>
+				<textElement>
+					<font size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[PERIMETRO ABDOMINAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="396" width="81" height="11"/>
+				<textElement>
+					<font size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[PIEL Y MUCOSAS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="185" y="396" width="48" height="11"/>
+				<textElement>
+					<font size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[ALERGIAS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="266" y="396" width="43" height="11"/>
+				<textElement>
+					<font size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[LUNARES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="101" y="396" width="41" height="11"/>
+				<textElement>
+					<font size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[MICOSIS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="349" y="396" width="55" height="11"/>
+				<textElement>
+					<font size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[PSORIASIS]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="147" y="396" width="27" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{micosis}!=null ? new java.lang.String("SI") : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="229" y="396" width="27" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{alergias}!=null ? new java.lang.String("SI") : new java.lang.String("S/P")]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="312" y="396" width="27" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{lunares}!=null ? new java.lang.String("SI") : new java.lang.String("S/P")]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="406" y="396" width="27" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{psoriasis}!=null ? new java.lang.String("SI") : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="414" width="91" height="11"/>
+				<textElement>
+					<font size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[LINFOGANGLIONAR]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="490" y="414" width="46" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{cuelloG1}!=null ? new java.lang.String("Grado I") :
+    $P{cuelloG2}!=null ? new java.lang.String("Grado II") :
+        $P{cuelloG3}!=null ? new java.lang.String("Grado III") :
+            $P{cuello_G4}!=null ? new java.lang.String("Grado IV") :
+new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="455" y="414" width="34" height="11"/>
+				<textElement>
+					<font size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[CUELLO]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="102" y="414" width="344" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Left">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{linfoganglionares}!=null ? new java.lang.String($P{linfoganglionares}) : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="382" y="432" width="63" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{ritmo_irregular}!=null ? new java.lang.String("IRREGULAR") : new java.lang.String("REGULAR")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="433" width="91" height="11"/>
+				<textElement>
+					<font size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[SISTEMA VASCULAR]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="425" y="506" width="110" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Left">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{mav}!=null ? new java.lang.String("CONSERVADO") : new java.lang.String("NO CONSERVADO")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="347" y="432" width="34" height="11"/>
+				<textElement>
+					<font size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[RITMO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="394" y="506" width="29" height="11"/>
+				<textElement>
+					<font size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[M.A.V]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="265" y="433" width="34" height="11"/>
+				<textElement>
+					<font size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[SOPLOS]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="301" y="433" width="27" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{soplos}!=null ? new java.lang.String("SI") : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="101" y="446" width="31" height="11"/>
+				<textElement>
+					<font size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[T/A]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="265" y="445" width="31" height="11"/>
+				<textElement>
+					<font size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[PULSO]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement mode="Opaque" x="176" y="446" width="34" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{DISTOLICAST}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="301" y="445" width="39" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{ex_fis_PULSO}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="137" y="446" width="34" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{SISTOLICAST}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="408" y="446" width="39" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{ex_fis_FRECUENCIA}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="347" y="446" width="58" height="11"/>
+				<textElement>
+					<font size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[FRECUENCIA]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="494" y="446" width="41" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{varices}!=null ? new java.lang.String("SI") : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="455" y="446" width="37" height="11"/>
+				<textElement>
+					<font size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[VARICES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="481" width="98" height="11"/>
+				<textElement>
+					<font size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[MAMAS TUMORACION]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="102" y="481" width="27" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{tumor_mamas}!=null ? new java.lang.String("SI") : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="507" width="98" height="11"/>
+				<textElement>
+					<font size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[PLEUROPULMONAR]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="102" y="507" width="290" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Left">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{linfoganglionares}!=null ? new java.lang.String($P{linfoganglionares}) : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="529" width="98" height="11"/>
+				<textElement>
+					<font size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[ABDOMEN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="106" y="529" width="57" height="11"/>
+				<textElement>
+					<font size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[CICATRICES]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="163" y="529" width="27" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{cicatriz}!=null ? new java.lang.String("SI") : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="198" y="529" width="100" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Left">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{abdomen_rigido}!=null ? new java.lang.String("RIGIDO") : new java.lang.String("BLANDO")]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="304" y="529" width="100" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Left">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{abdomen_indepresible}!=null ? new java.lang.String("NO DEPRESIBLE") : new java.lang.String("DEPRESIBLE")]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="416" y="529" width="100" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Left">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{abdomen_doloroso}!=null ? new java.lang.String("DOLOROSO") : new java.lang.String("INDOLORO")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="547" width="98" height="11"/>
+				<textElement>
+					<font size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[ZONAS HERNIARIAS]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="161" y="547" width="27" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{herniaID}!=null ? new java.lang.String("SI") : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="104" y="547" width="57" height="11"/>
+				<textElement>
+					<font size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[HERNIA I.D.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="196" y="547" width="57" height="11"/>
+				<textElement>
+					<font size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[HERNIA I.D.]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="254" y="547" width="27" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{herniaII}!=null ? new java.lang.String("SI") : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="302" y="547" width="110" height="11"/>
+				<textElement>
+					<font size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[FOSAS LUMBARES LIBRES]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="414" y="547" width="27" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{fosas_lumbares_lib}!=null ? new java.lang.String("SI") : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="563" width="98" height="11"/>
+				<textElement>
+					<font size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[OSTEOARTICULAR]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="105" y="563" width="27" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{osteoarticular}!=null ? new java.lang.String("SI") : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="302" y="563" width="27" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{muscular}!=null ? new java.lang.String("SI") : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="196" y="563" width="99" height="11"/>
+				<textElement>
+					<font size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[SECTOR MUSCULAR]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="261" y="582" width="34" height="11" backcolor="#CCCCCC">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{ojoderechoSC}.floatValue()!=0.0)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Float"><![CDATA[$P{ojoderechoSC}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="103" y="582" width="149" height="11">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{ojoderechoSC}.floatValue()!=0.0)]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[OJO DERECHO SIN CORRECCIÓN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="581" width="98" height="11"/>
+				<textElement>
+					<font size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[VISION DE LEJOS]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="261" y="595" width="34" height="11" backcolor="#CCCCCC">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{ojoizquierdoSC}.floatValue()!=0.0)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Float"><![CDATA[$P{ojoizquierdoSC}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="103" y="595" width="159" height="11">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{ojoizquierdoSC}.floatValue()!=0.0)]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[OJO IZQUIERDO SIN CORRECCIÓN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="299" y="582" width="149" height="11">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{ojoderechoCC}.floatValue()!=0.0)]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[OJO DERECHO CON CORRECCIÓN]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="461" y="582" width="34" height="11" backcolor="#CCCCCC">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{ojoderechoCC}.floatValue()!=0.0)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Float"><![CDATA[$P{ojoizquierdoCC}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="299" y="595" width="159" height="11">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{ojoizquierdoCC}.floatValue()!=0.0)]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[OJO IZQUIERDO CON CORRECCIÓN]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="461" y="595" width="34" height="11" backcolor="#CCCCCC">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($P{ojoizquierdoCC}.floatValue()!=0.0)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Float"><![CDATA[$P{ojoizquierdoCC}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="328" y="74" width="51" height="11"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[OTROS]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="383" y="74" width="22" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{ant_fam_otros}!=null ? new java.lang.String("SI") : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="448" y="345" width="27" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{ant_piel_mucosasPsoriasis}!=null ? new java.lang.String("SI") : new java.lang.String("S/P")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="295" y="345" width="57" height="11"/>
+				<textElement>
+					<font size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[LUNARES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="389" y="345" width="57" height="11"/>
+				<textElement>
+					<font size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[PSORIASIS]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="354" y="345" width="27" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{ant_piel_mucosasLunares}!=null ? new java.lang.String("SI") : new java.lang.String("S/P")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="444" y="328" width="61" height="11"/>
+				<textElement>
+					<font size="8" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[AUTOEX/MAMA]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement mode="Opaque" x="506" y="327" width="27" height="11" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="9" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{ant_obst_diu}!=null ? new java.lang.String("SI") : new java.lang.String("NO")]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

@@ -1,0 +1,23 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+    <head>
+        <title>TalitakumiWebApp Start Page</title>
+    </head>
+    <body>
+        <div id="branding">
+            <h1>${empresa}</h1>
+        </div>
+  <div style="height:450px">
+    <center>
+
+	<table cellspacing="0" cellpadding="3" t:type="grid" t:rowsPerPage="18" t:source="tareas" t:row="tarea" t:add="action" t:include="item, texto">
+                <t:parameter name="textoCell">
+                        <t:actionlink t:id="menu" context="tarea.item">${tarea.texto}</t:actionlink>
+		</t:parameter>
+	</table>
+    </center>
+  </div>
+  <div id="footer">
+        <p><span>Powered by <a href="http://www.kfussion.com/talitakumi">Talitakumi 1.4</a></span></p>
+    </div>
+    </body>
+</html>

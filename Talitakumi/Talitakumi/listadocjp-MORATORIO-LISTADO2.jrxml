@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="classic" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="30" rightMargin="30" topMargin="20" bottomMargin="20" uuid="c0ffaeb1-63ad-470c-9998-77f2db44a426">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<parameter name="fecha_desde" class="java.lang.String"/>
+	<parameter name="fecha_hasta" class="java.lang.String"/>
+	<parameter name="REPORT_SOUPER" class="java.lang.Integer"/>
+	<parameter name="emisor" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="limite" class="java.lang.Integer"/>
+	<parameter name="psico" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     documento,
+     apellidos,
+     nombres,
+     tipodeactividad.`descripcion`,
+     episodios.`fecha`,
+     facturas.`numero`,
+     facturas.`emisor`
+FROM
+     facturas, episodios, actividades, tipodeactividad, personas
+WHERE
+     fecha >= $P{fecha_desde}
+ AND fecha <= $P{fecha_hasta}
+ and entregado = 'S'
+ and episodios.id = facturas.episodio
+ and facturas.emisor = $P{emisor}
+ and actividades.tipoactividad = tipodeactividad.id
+ and episodios.tipoepisodio = actividades.id
+ and personas.id = paciente
+ and (actividades.tipoactividad = 10)
+ORDER BY
+     facturas.emisor ASC,
+     facturas.numero ASC,
+     personas.id ASC,
+     fechaentregado ASC,
+     actividades.tipoactividad ASC
+LIMIT $P{limite}]]>
+	</queryString>
+	<field name="documento" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="apellidos" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombres" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="descripcion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fecha" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="numero" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="emisor" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="total" class="java.lang.Integer" resetType="None" calculation="Count">
+		<variableExpression><![CDATA[$V{elconta}.intValue()%$P{REPORT_SOUPER}.intValue()!=0 ? new java.lang.Integer(1) : null]]></variableExpression>
+	</variable>
+	<variable name="elconta" class="java.lang.Integer" incrementType="Group" incrementGroup="persona" calculation="Count">
+		<variableExpression><![CDATA[$F{documento}]]></variableExpression>
+	</variable>
+	<variable name="total_emisor" class="java.lang.Integer" resetType="Group" resetGroup="emisor" calculation="Count">
+		<variableExpression><![CDATA[$V{elconta}.intValue()%$P{REPORT_SOUPER}.intValue()!=0 ? new java.lang.Integer(1) : null]]></variableExpression>
+	</variable>
+	<group name="emisor" isStartNewPage="true" isResetPageNumber="true" isReprintHeaderOnEachPage="true">
+		<groupExpression><![CDATA[$F{emisor}]]></groupExpression>
+		<groupFooter>
+			<band height="14">
+				<staticText>
+					<reportElement x="400" y="0" width="34" height="13" uuid="a3a81c87-c56e-4ea7-bdc8-5e1ed1920f81"/>
+					<text><![CDATA[Total :]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="434" y="0" width="100" height="13" uuid="b05b935e-d357-4254-9e18-64e70ba5b3b5"/>
+					<textFieldExpression><![CDATA[$V{total_emisor}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="persona">
+		<groupExpression><![CDATA[$F{documento}]]></groupExpression>
+		<groupHeader>
+			<band/>
+		</groupHeader>
+		<groupFooter>
+			<band height="20">
+				<printWhenExpression><![CDATA[new java.lang.Boolean($V{elconta}.intValue()%$P{REPORT_SOUPER}.intValue()!=0)]]></printWhenExpression>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField" x="75" y="0" width="115" height="16" uuid="97a12d5a-fd41-42f4-bc8e-c069b5a5cdbe">
+						<printWhenExpression><![CDATA[new java.lang.Boolean($V{elconta}.intValue()%$P{REPORT_SOUPER}.intValue()!=0)]]></printWhenExpression>
+					</reportElement>
+					<textFieldExpression><![CDATA[$F{apellidos}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField" x="190" y="0" width="126" height="16" uuid="67f7f6de-528a-4850-8084-9c51d36b6c49">
+						<printWhenExpression><![CDATA[new java.lang.Boolean($V{elconta}.intValue()%$P{REPORT_SOUPER}.intValue()!=0)]]></printWhenExpression>
+					</reportElement>
+					<textFieldExpression><![CDATA[$F{nombres}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField" x="316" y="0" width="216" height="16" uuid="61ad7bb4-aa18-40e2-8e5a-08216a9a4236">
+						<printWhenExpression><![CDATA[new java.lang.Boolean(($F{emisor}.intValue()==1) && $V{elconta}.intValue()%$P{REPORT_SOUPER}.intValue()!=0)  || $P{psico}.equals("S")]]></printWhenExpression>
+					</reportElement>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField" x="0" y="0" width="75" height="16" uuid="4d4383cf-2c90-4073-9c62-687b2ee8d2e3">
+						<printWhenExpression><![CDATA[new java.lang.Boolean($V{elconta}.intValue()%$P{REPORT_SOUPER}.intValue()!=0)]]></printWhenExpression>
+					</reportElement>
+					<textFieldExpression><![CDATA[$F{documento}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="1" splitType="Stretch">
+			<line>
+				<reportElement key="line" x="0" y="-46" width="534" height="1" forecolor="#000000" uuid="668da9d1-6d39-41c5-8dc4-57faf084165e"/>
+				<graphicElement>
+					<pen lineWidth="2.0" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="9" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="87" splitType="Stretch">
+			<staticText>
+				<reportElement key="staticText" x="207" y="2" width="142" height="29" uuid="435921d3-e8a3-43a3-a1c1-b29baf6f1437"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Reporte C.J.P]]></text>
+			</staticText>
+			<line>
+				<reportElement key="line" positionType="FixRelativeToBottom" x="0" y="67" width="534" height="1" forecolor="#000000" uuid="2b12fbb1-e392-4069-80cb-aadb75c86bcc"/>
+				<graphicElement>
+					<pen lineWidth="2.0" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement key="staticText-1" x="349" y="3" width="66" height="16" uuid="10763172-555d-48b2-859a-dcb61842e6e0"/>
+				<text><![CDATA[Fecha desde]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-2" x="349" y="21" width="66" height="14" uuid="c05d2ec2-20f8-4aa7-a016-6d60a60f88e7"/>
+				<text><![CDATA[Fecha hasta]]></text>
+			</staticText>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-1" x="438" y="2" width="94" height="16" uuid="679047e4-653b-44b7-9f35-4679f68a516e"/>
+				<textFieldExpression><![CDATA[$P{fecha_desde}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-3" x="438" y="20" width="94" height="14" uuid="6d3eccc2-f82b-437b-addf-e6205f64bca2"/>
+				<textFieldExpression><![CDATA[$P{fecha_hasta}]]></textFieldExpression>
+			</textField>
+			<rectangle radius="0">
+				<reportElement key="element-22" mode="Opaque" x="1" y="69" width="534" height="17" forecolor="#000000" backcolor="#999999" uuid="217cd0bd-a770-49b0-b452-717986abbad5"/>
+				<graphicElement>
+					<pen lineWidth="0.25" lineStyle="Solid"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement key="element-90" x="0" y="70" width="76" height="16" forecolor="#FFFFFF" uuid="a0d773c6-e889-43b6-be45-cf9e6fca5c1a"/>
+				<box leftPadding="2" rightPadding="2">
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Documento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="element-90" x="356" y="70" width="142" height="16" forecolor="#FFFFFF" uuid="f7c744b2-d6fb-437a-8499-c34f6fa77d46">
+					<printWhenExpression><![CDATA[new java.lang.Boolean(($F{emisor}.intValue()==1))]]></printWhenExpression>
+				</reportElement>
+				<box leftPadding="2" rightPadding="2">
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Servicio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="37" width="533" height="20" uuid="1aa79fe1-c54b-4a8f-8686-8fa64bb78423"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[PACIENTES DE LA CLÍNICA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="1" y="5" width="206" height="16" uuid="a8a64f5b-84e9-47fa-8cc7-a202c40c3227"/>
+				<textElement>
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{emisor}.intValue()==1 ? new java.lang.String("MEDILAB - GASTON MORATORIO") :
+$F{emisor}.intValue()==2 ? new java.lang.String("MEDILAB - RAUL BARAÑANO") :
+$F{emisor}.intValue()==3 ? new java.lang.String("MEDILAB - MEDICINA LABORAL") :
+new java.lang.String("SIN EMISOR")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="element-90" x="76" y="70" width="241" height="16" forecolor="#FFFFFF" uuid="19aae7ed-cfc7-4f75-a57d-373614a5d360"/>
+				<box leftPadding="2" rightPadding="2">
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="element-90" x="320" y="70" width="178" height="16" forecolor="#FFFFFF" uuid="479140df-9718-493c-8608-ad32f592f368">
+					<printWhenExpression><![CDATA[new java.lang.Boolean(($F{emisor}.intValue()==2))]]></printWhenExpression>
+				</reportElement>
+				<box leftPadding="2" rightPadding="2">
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[ ]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch">
+			<printWhenExpression><![CDATA[new java.lang.Boolean($V{elconta}.intValue()%$P{REPORT_SOUPER}.intValue()!=0)]]></printWhenExpression>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="307" y="0" width="191" height="19" uuid="0f134cfa-67d5-405d-951d-e37f145e7fe5"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font fontName="Helvetica" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Pagina " + $V{PAGE_NUMBER} + " de "]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report" pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="498" y="0" width="36" height="19" forecolor="#000000" backcolor="#FFFFFF" uuid="148d8a18-ea62-4fcd-8ea4-5620be2960f8"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Helvetica" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="CP1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["" + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<lastPageFooter>
+		<band/>
+	</lastPageFooter>
+</jasperReport>

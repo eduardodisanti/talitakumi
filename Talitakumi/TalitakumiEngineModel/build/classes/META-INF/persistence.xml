@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="1.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">
+  <persistence-unit name="TalitakumiEngineModelPU" transaction-type="RESOURCE_LOCAL">
+    <provider>oracle.toplink.essentials.PersistenceProvider</provider>
+    <class>talitakumi.model.core.Actividades</class>
+    <class>talitakumi.model.core.Consultorios</class>
+    <class>talitakumi.model.core.Consultoriosactivos</class>
+    <class>talitakumi.model.core.Emisor</class>
+    <class>talitakumi.model.core.Enfermedades</class>
+    <class>talitakumi.model.core.Familiaenfermedades</class>
+    <class>talitakumi.model.core.Familiamedicamentos</class>
+    <class>talitakumi.model.core.Medicamentos</class>
+    <class>talitakumi.model.core.Medicos</class>
+    <class>talitakumi.model.core.Personas</class>
+    <class>talitakumi.model.core.Procedencias</class>
+    <class>talitakumi.model.core.Tipodeactividad</class>
+    <class>talitakumi.model.core.Agenda</class>
+    <class>talitakumi.model.core.Analisis</class>
+    <class>talitakumi.model.core.Analisishechos</class>
+    <class>talitakumi.model.core.Auditoriacaja</class>
+    <class>talitakumi.model.core.Caja</class>
+    <class>talitakumi.model.core.Carnetdesalud</class>
+    <class>talitakumi.model.core.Chequeos</class>
+    <class>talitakumi.model.core.Clientes</class>
+    <class>talitakumi.model.core.Diariocaja</class>
+    <class>talitakumi.model.core.Episodioactitudes</class>
+    <class>talitakumi.model.core.Episodioagudezasauditivas</class>
+    <class>talitakumi.model.core.Episodioagudezasvisuales</class>
+    <class>talitakumi.model.core.Episodioexameneneuro</class>
+    <class>talitakumi.model.core.Episodioexamenfisico</class>
+    <class>talitakumi.model.core.Episodioextraccionista</class>
+    <class>talitakumi.model.core.Episodiointegrideadme</class>
+    <class>talitakumi.model.core.Episodioodontologo</class>
+    <class>talitakumi.model.core.Episodiopresion</class>
+    <class>talitakumi.model.core.Episodios</class>
+    <class>talitakumi.model.core.EpisodiosExAdicionales</class>
+    <class>talitakumi.model.core.EpisodiosVacunasAdicionales</class>
+    <class>talitakumi.model.core.Episodiosantecedentes</class>
+    <class>talitakumi.model.core.Episodiosenfermedades</class>
+    <class>talitakumi.model.core.Episodiosestudios</class>
+    <class>talitakumi.model.core.Episodiosmedicamentos</class>
+    <class>talitakumi.model.core.Episodiosvacunas</class>
+    <class>talitakumi.model.core.Episodiosvicios</class>
+    <class>talitakumi.model.core.Estudios</class>
+    <class>talitakumi.model.core.Estudioshechos</class>
+    <class>talitakumi.model.core.Examenesactividad</class>
+    <class>talitakumi.model.core.Examenfisico</class>
+    <class>talitakumi.model.core.Facturas</class>
+    <class>talitakumi.model.core.Feriados</class>
+    <class>talitakumi.model.core.Libretaprofesional</class>
+    <class>talitakumi.model.core.Libretasdeconducir</class>
+    <class>talitakumi.model.core.Listaprecios</class>
+    <class>talitakumi.model.core.Mensajes</class>
+    <class>talitakumi.model.core.Moldeagenda</class>
+    <class>talitakumi.model.core.Numerador</class>
+    <class>talitakumi.model.core.Otrosservicios</class>
+    <class>talitakumi.model.core.Pacientes</class>
+    <class>talitakumi.model.core.Precios</class>
+    <class>talitakumi.model.core.Preciosclientes</class>
+    <class>talitakumi.model.core.Psicotecnicos</class>
+    <class>talitakumi.model.core.Rollos</class>
+    <class>talitakumi.model.core.Roundrobin</class>
+    <class>talitakumi.model.core.Seguros</class>
+    <class>talitakumi.model.core.Servicioexparaclin</class>
+    <class>talitakumi.model.core.Serviciovacunas</class>
+    <class>talitakumi.model.core.Timming</class>
+    <class>talitakumi.model.core.Tipolibretaconducir</class>
+    <class>talitakumi.model.core.Usuarios</class>
+    <class>talitakumi.model.core.Vacunas</class>
+    <class>talitakumi.model.core.Vencimientosdoc</class>
+    <class>talitakumi.model.core.Viciossociales</class>
+    <properties>
+      <property name="toplink.jdbc.user" value="root"/>
+      <property name="toplink.jdbc.password" value="root"/>
+      <property name="toplink.jdbc.url" value="jdbc:mysql://127.0.0.1:3306/talitakumi"/>
+      <property name="toplink.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+    </properties>
+  </persistence-unit>
+</persistence>

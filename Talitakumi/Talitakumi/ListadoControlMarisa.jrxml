@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ResumenCarnetDeSalud" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="fecha_desde" class="java.lang.String">
+		<defaultValueExpression><![CDATA["20100501"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fecha_hasta" class="java.lang.String">
+		<defaultValueExpression><![CDATA["20100931"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     actividades.`descripcion` AS descact,
+     count(*)as cantidad,
+     agenda.`fecha` AS agenda_fecha,
+     agenda.`hora` AS agenda_hora,
+     episodios.`cliente` AS episodios_cliente,
+     clientes.`nombre` AS clientes_nombre
+FROM
+     `episodios` episodios INNER JOIN `agenda` agenda ON episodios.`id` = agenda.`episodio`
+     INNER JOIN `clientes` clientes ON episodios.`cliente` = clientes.`id`
+     INNER JOIN `actividades` actividades ON episodios.`tipoepisodio` = actividades.`id`
+WHERE
+     episodios.fecha >= $P{fecha_desde}
+     and episodios.fecha <= $P{fecha_hasta}
+GROUP BY
+     actividades.descripcion,
+     clientes.nombre,
+     agenda.fecha,
+     agenda.hora]]>
+	</queryString>
+	<field name="descact" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cantidad" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="agenda_fecha" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="agenda_hora" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="episodios_cliente" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="clientes_nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="totalcantidad" class="java.lang.Long" resetType="Group" resetGroup="tipodepago" calculation="Sum">
+		<variableExpression><![CDATA[$V{cantidadActividad}]]></variableExpression>
+	</variable>
+	<variable name="cantidadActividad" class="java.lang.Long" resetType="Group" resetGroup="tipodepago">
+		<variableExpression><![CDATA[$F{cantidad}]]></variableExpression>
+	</variable>
+	<variable name="cantidadMatutino" class="java.lang.Long" resetType="Group" resetGroup="fecha" calculation="Sum">
+		<variableExpression><![CDATA[$F{agenda_hora}.compareTo("12:00") <=0 ? new java.lang.Long(1) : new java.lang.Long(0)]]></variableExpression>
+	</variable>
+	<variable name="comparas" class="java.lang.Integer">
+		<variableExpression><![CDATA[new java.lang.Integer($F{agenda_hora}.compareTo("12:00:00"))]]></variableExpression>
+	</variable>
+	<variable name="cantidadVesp" class="java.lang.Long" resetType="Group" resetGroup="fecha" calculation="Sum">
+		<variableExpression><![CDATA[$F{agenda_hora}.compareTo("12:00") >0 ? new java.lang.Long(1) : new java.lang.Long(0)]]></variableExpression>
+	</variable>
+	<variable name="totalVesp" class="java.lang.Long" resetType="Group" resetGroup="cliente" calculation="Sum">
+		<variableExpression><![CDATA[$F{agenda_hora}.compareTo("12:00") >0 ? new java.lang.Long(1) : new java.lang.Long(0)]]></variableExpression>
+	</variable>
+	<variable name="totalMatu" class="java.lang.Long" resetType="Group" resetGroup="cliente" calculation="Sum">
+		<variableExpression><![CDATA[$F{agenda_hora}.compareTo("12:00") <=0 ? new java.lang.Long(1) : new java.lang.Long(0)]]></variableExpression>
+	</variable>
+	<variable name="sumarioVesp" class="java.lang.Long" calculation="Sum">
+		<variableExpression><![CDATA[$F{agenda_hora}.compareTo("12:00") >0 ? new java.lang.Long(1) : new java.lang.Long(0)]]></variableExpression>
+	</variable>
+	<variable name="sumarioMatu" class="java.lang.Long" calculation="Sum">
+		<variableExpression><![CDATA[$F{agenda_hora}.compareTo("12:00") <=0 ? new java.lang.Long(1) : new java.lang.Long(0)]]></variableExpression>
+	</variable>
+	<group name="tipodepago">
+		<groupExpression><![CDATA[$F{descact}]]></groupExpression>
+		<groupHeader>
+			<band height="19">
+				<textField>
+					<reportElement x="125" y="2" width="427" height="17"/>
+					<textElement textAlignment="Right">
+						<font size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{descact}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="20">
+				<textField>
+					<reportElement x="464" y="0" width="89" height="20"/>
+					<textElement textAlignment="Right">
+						<font isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Long"><![CDATA[new java.lang.Long($V{totalMatu}.longValue() + $V{totalVesp}.longValue())]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="364" y="0" width="100" height="20"/>
+					<textElement textAlignment="Right">
+						<font isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Long"><![CDATA[$V{totalVesp}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="226" y="1" width="137" height="19"/>
+					<textElement textAlignment="Right">
+						<font isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Long"><![CDATA[$V{totalMatu}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="125" y="1" width="99" height="19"/>
+					<textElement>
+						<font isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Total actividad]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="cliente">
+		<groupExpression><![CDATA[$F{clientes_nombre}]]></groupExpression>
+		<groupHeader>
+			<band height="20">
+				<textField>
+					<reportElement x="0" y="0" width="315" height="20"/>
+					<textElement>
+						<font isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{clientes_nombre}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="fecha">
+		<groupExpression><![CDATA[$F{agenda_fecha}]]></groupExpression>
+		<groupHeader>
+			<band/>
+		</groupHeader>
+		<groupFooter>
+			<band height="18">
+				<textField>
+					<reportElement x="226" y="0" width="137" height="18"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression class="java.lang.Long"><![CDATA[$V{cantidadMatutino}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="364" y="0" width="100" height="18"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression class="java.lang.Long"><![CDATA[$V{cantidadVesp}]]></textFieldExpression>
+				</textField>
+				<textField pattern="dd/MM/yyyy">
+					<reportElement x="125" y="0" width="100" height="18"/>
+					<textElement/>
+					<textFieldExpression class="java.util.Date"><![CDATA[$F{agenda_fecha}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="464" y="0" width="91" height="18"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression class="java.lang.Long"><![CDATA[new java.lang.Long($V{cantidadMatutino}.longValue() + $V{cantidadVesp}.longValue())]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEE">
+					<reportElement x="57" y="1" width="57" height="17"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression class="java.util.Date"><![CDATA[$F{agenda_fecha}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band/>
+	</title>
+	<pageHeader>
+		<band height="35">
+			<staticText>
+				<reportElement x="147" y="0" width="242" height="35"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CONTROL DE SERVICIOS]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="0" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="413" y="0" width="30" height="20"/>
+				<textElement/>
+				<text><![CDATA[desde]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="452" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{fecha_desde}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="413" y="20" width="30" height="15"/>
+				<textElement/>
+				<text><![CDATA[hasta]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="453" y="20" width="100" height="15"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{fecha_hasta}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="22">
+			<rectangle>
+				<reportElement x="0" y="1" width="555" height="20" backcolor="#CCCCCC"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="298" y="3" width="65" height="18"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Matutino]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="403" y="2" width="65" height="18"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Vespertino]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="487" y="3" width="65" height="18"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band/>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="20">
+			<textField>
+				<reportElement x="432" y="0" width="80" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA["Pagina "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="512" y="0" width="40" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<lastPageFooter>
+		<band height="20">
+			<textField>
+				<reportElement x="226" y="0" width="137" height="20"/>
+				<textElement textAlignment="Right">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Long"><![CDATA[$V{sumarioVesp}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="363" y="0" width="100" height="20"/>
+				<textElement textAlignment="Right">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Long"><![CDATA[$V{sumarioMatu}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="463" y="0" width="91" height="18"/>
+				<textElement textAlignment="Right">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Long"><![CDATA[new java.lang.Long($V{sumarioMatu}.longValue() + $V{sumarioVesp}.longValue())]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="127" y="1" width="99" height="19"/>
+				<textElement>
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Total período]]></text>
+			</staticText>
+		</band>
+	</lastPageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

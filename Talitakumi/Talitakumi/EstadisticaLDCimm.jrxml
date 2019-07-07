@@ -1,0 +1,850 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="EstadisticaLDCimm" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<scriptlet name="sumacodigos" class="net.sf.jasperreports.engine.JRDefaultScriptlet">
+		<scriptletDescription><![CDATA[Para sumar los codigos]]></scriptletDescription>
+	</scriptlet>
+	<parameter name="fechadesde" class="java.util.Date"/>
+	<parameter name="fechahasta" class="java.util.Date"/>
+	<queryString>
+		<![CDATA[select categoria, tipo, sexo, vigencia, codigo1, codigo2, codigo3, datediff(episodios.fecha, personas.fechanacimiento)/365 as edad
+	from libretasdeconducir, personas, episodios
+        where
+		tipo <= 2		and
+		vigencia != 0 		and
+		episodio = episodios.id and
+		paciente = personas.id  and
+		fecha >= $P{fechadesde} and
+		fecha <= $P{fechahasta}
+	order by categoria, tipo, sexo, vigencia]]>
+	</queryString>
+	<field name="categoria" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sexo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="vigencia" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="codigo1" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="codigo2" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="codigo3" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tipo" class="java.lang.Integer"/>
+	<field name="edad" class="java.lang.Integer"/>
+	<variable name="vigenciaTotal" class="java.lang.Long" resetType="Group" resetGroup="vigencia" calculation="Count">
+		<variableExpression><![CDATA[$F{vigencia}]]></variableExpression>
+	</variable>
+	<variable name="totalSexo" class="java.lang.Long" resetType="Group" resetGroup="sexo" calculation="Count">
+		<variableExpression><![CDATA[$F{vigencia}]]></variableExpression>
+	</variable>
+	<variable name="tipo" class="java.lang.Long" resetType="Group" resetGroup="tipo" calculation="Count">
+		<variableExpression><![CDATA[$F{tipo}]]></variableExpression>
+	</variable>
+	<variable name="de16a18" class="java.lang.Integer" resetType="Group" resetGroup="vigencia" calculation="Sum">
+		<variableExpression><![CDATA[$F{edad}.intValue()<19 ? new java.lang.Integer(1) : new java.lang.Integer(0)]]></variableExpression>
+	</variable>
+	<variable name="de19a24" class="java.lang.Integer" resetType="Group" resetGroup="vigencia" calculation="Sum">
+		<variableExpression><![CDATA[$F{edad}.intValue()>=19 && $F{edad}.intValue()<=24 ? new java.lang.Integer(1) : new java.lang.Integer(0)]]></variableExpression>
+	</variable>
+	<variable name="de25a45" class="java.lang.Integer" resetType="Group" resetGroup="vigencia" calculation="Sum">
+		<variableExpression><![CDATA[$F{edad}.intValue()>=25 && $F{edad}.intValue()<=45 ? new java.lang.Integer(1) : new java.lang.Integer(0)]]></variableExpression>
+	</variable>
+	<variable name="de46a60" class="java.lang.Integer" resetType="Group" resetGroup="vigencia" calculation="Sum">
+		<variableExpression><![CDATA[$F{edad}.intValue()>=46 && $F{edad}.intValue()<=60 ? new java.lang.Integer(1) : new java.lang.Integer(0)]]></variableExpression>
+	</variable>
+	<variable name="de61a75" class="java.lang.Integer" resetType="Group" resetGroup="vigencia" calculation="Sum">
+		<variableExpression><![CDATA[$F{edad}.intValue()>=61 ? new java.lang.Integer(1) : new java.lang.Integer(0)]]></variableExpression>
+	</variable>
+	<variable name="supertotal" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{vigencia}]]></variableExpression>
+	</variable>
+	<variable name="hombres" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{sexo}.equals("M") ? new java.lang.Integer(1) : null]]></variableExpression>
+	</variable>
+	<variable name="mujeres" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{sexo}.equals("F") ? new java.lang.Integer(1) : null]]></variableExpression>
+	</variable>
+	<variable name="Hde16a18" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{edad}.intValue()<19 && $F{sexo}.equals("M") ? new java.lang.Integer(1) : new java.lang.Integer(0)]]></variableExpression>
+	</variable>
+	<variable name="Hde19a24" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{sexo}.equals("M") && $F{edad}.intValue()>=19 && $F{edad}.intValue()<=24 ? new java.lang.Integer(1) : new java.lang.Integer(0)]]></variableExpression>
+	</variable>
+	<variable name="Hde25a45" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{sexo}.equals("M") && $F{edad}.intValue()>=25 && $F{edad}.intValue()<=45 ? new java.lang.Integer(1) : new java.lang.Integer(0)]]></variableExpression>
+	</variable>
+	<variable name="Hde46a60" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{sexo}.equals("M") && $F{edad}.intValue()>=46 && $F{edad}.intValue()<=60 ? new java.lang.Integer(1) : new java.lang.Integer(0)]]></variableExpression>
+	</variable>
+	<variable name="Hde61a75" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{sexo}.equals("M") && $F{edad}.intValue()>=61 ? new java.lang.Integer(1) : new java.lang.Integer(0)]]></variableExpression>
+	</variable>
+	<variable name="Tde16a18" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{edad}.intValue()<19 ? new java.lang.Integer(1) : new java.lang.Integer(0)]]></variableExpression>
+	</variable>
+	<variable name="Tde19a24" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{edad}.intValue()>=19 && $F{edad}.intValue()<=24 ? new java.lang.Integer(1) : new java.lang.Integer(0)]]></variableExpression>
+	</variable>
+	<variable name="Tde25a45" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{edad}.intValue()>=25 && $F{edad}.intValue()<=45 ? new java.lang.Integer(1) : new java.lang.Integer(0)]]></variableExpression>
+	</variable>
+	<variable name="Tde46a60" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{edad}.intValue()>=46 && $F{edad}.intValue()<=60 ? new java.lang.Integer(1) : new java.lang.Integer(0)]]></variableExpression>
+	</variable>
+	<variable name="Tde61a75" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{edad}.intValue()>=61 ? new java.lang.Integer(1) : new java.lang.Integer(0)]]></variableExpression>
+	</variable>
+	<variable name="Mde16a18" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{sexo}.equals("F") && $F{edad}.intValue()<19 ? new java.lang.Integer(1) : new java.lang.Integer(0)]]></variableExpression>
+	</variable>
+	<variable name="Mde19a24" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{sexo}.equals("F") && $F{edad}.intValue()>=19 && $F{edad}.intValue()<=24 ? new java.lang.Integer(1) : new java.lang.Integer(0)]]></variableExpression>
+	</variable>
+	<variable name="Mde25a45" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{sexo}.equals("F") && $F{edad}.intValue()>=25 && $F{edad}.intValue()<=45 ? new java.lang.Integer(1) : new java.lang.Integer(0)]]></variableExpression>
+	</variable>
+	<variable name="Mde46a60" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{sexo}.equals("F") && $F{edad}.intValue()>=46 && $F{edad}.intValue()<=60 ? new java.lang.Integer(1) : new java.lang.Integer(0)]]></variableExpression>
+	</variable>
+	<variable name="Mde61a75" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{sexo}.equals("F") && $F{edad}.intValue()>=61 ? new java.lang.Integer(1) : new java.lang.Integer(0)]]></variableExpression>
+	</variable>
+	<variable name="totalA" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{categoria}.equals("A1") || $F{categoria}.equals("A2") ? new java.lang.Integer(1) : new java.lang.Integer(0)]]></variableExpression>
+	</variable>
+	<variable name="totalG1" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{categoria}.equals("G1") ? new java.lang.Integer(1) : new java.lang.Integer(0)]]></variableExpression>
+	</variable>
+	<variable name="totalG2" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{categoria}.equals("G2") ? new java.lang.Integer(1) : new java.lang.Integer(0)]]></variableExpression>
+	</variable>
+	<variable name="totalRenovacion" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{tipo}.intValue()!=1 ? new java.lang.Integer(1) : new java.lang.Integer(0)]]></variableExpression>
+	</variable>
+	<variable name="totalRenovacionG1" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{tipo}.intValue()!=1 && $F{categoria}.equals("G1") ? new java.lang.Integer(1) : new java.lang.Integer(0)]]></variableExpression>
+	</variable>
+	<variable name="totalRenovacionG2" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{tipo}.intValue()!=1 && $F{categoria}.equals("G2") ? new java.lang.Integer(1) : new java.lang.Integer(0)]]></variableExpression>
+	</variable>
+	<variable name="totalAspiranteG1" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{tipo}.intValue()==1 && $F{categoria}.equals("G1") ? new java.lang.Integer(1) : new java.lang.Integer(0)]]></variableExpression>
+	</variable>
+	<variable name="totalAspiranteG2" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{tipo}.intValue()==1 && $F{categoria}.equals("G2") ? new java.lang.Integer(1) : new java.lang.Integer(0)]]></variableExpression>
+	</variable>
+	<variable name="totalRenovacionA" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{tipo}.intValue()!=1 && ($F{categoria}.equals("A1") || $F{categoria}.equals("A2")) ? new java.lang.Integer(1) : new java.lang.Integer(0)]]></variableExpression>
+	</variable>
+	<variable name="totalAspiranteA" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{tipo}.intValue()==1 && ($F{categoria}.equals("A1") || $F{categoria}.equals("A2")) ? new java.lang.Integer(1) : new java.lang.Integer(0)]]></variableExpression>
+	</variable>
+	<variable name="sincodigos" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[(
+    $F{codigo1}.intValue()==0 &&
+    $F{codigo2}.intValue()==0 &&
+    $F{codigo3}.intValue()==0
+) ? new java.lang.Integer(1) : new java.lang.Integer(0)]]></variableExpression>
+	</variable>
+	<variable name="mujeresCategoria" class="java.lang.Integer" resetType="Group" resetGroup="tipo" calculation="Count">
+		<variableExpression><![CDATA[$F{sexo}.equals("F") ? new java.lang.Integer(1) : null]]></variableExpression>
+	</variable>
+	<variable name="hombresCategoria" class="java.lang.Integer" resetType="Group" resetGroup="tipo" calculation="Count">
+		<variableExpression><![CDATA[$F{sexo}.equals("M") ? new java.lang.Integer(1) : null]]></variableExpression>
+	</variable>
+	<variable name="totalAspirantes" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{tipo}.intValue()==1 ? new java.lang.Integer(1) : new java.lang.Integer(0)]]></variableExpression>
+	</variable>
+	<group name="categoria" isStartNewPage="true" isReprintHeaderOnEachPage="true">
+		<groupExpression><![CDATA[$F{categoria}]]></groupExpression>
+		<groupHeader>
+			<band height="22">
+				<staticText>
+					<reportElement x="0" y="0" width="89" height="22"/>
+					<textElement verticalAlignment="Middle">
+						<font size="13" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Categoría]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="89" y="2" width="276" height="20"/>
+					<textElement>
+						<font size="13" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{categoria}.equals("A1")||
+$F{categoria}.equals("A1")||
+$F{categoria}.equals("A3") ?
+    new java.lang.String("A") :
+    new java.lang.String($F{categoria})]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="tipo" isStartNewPage="true" isReprintHeaderOnEachPage="true">
+		<groupExpression><![CDATA[$F{tipo}]]></groupExpression>
+		<groupHeader>
+			<band height="27">
+				<rectangle>
+					<reportElement x="0" y="6" width="555" height="20" backcolor="#CCCCCC"/>
+				</rectangle>
+				<staticText>
+					<reportElement x="41" y="5" width="134" height="20"/>
+					<textElement>
+						<font size="14" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Tipo de libreta]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="175" y="5" width="380" height="20"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{tipo}.intValue()==1?new java.lang.String("ASPIRANTE") : new java.lang.String("RENOVACION")]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="51">
+				<rectangle>
+					<reportElement x="1" y="1" width="555" height="20" backcolor="#CCCCCC"/>
+				</rectangle>
+				<staticText>
+					<reportElement x="41" y="0" width="134" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font size="14" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Total tipo libreta]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="343" y="2" width="100" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Long"><![CDATA[$V{tipo}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="175" y="2" width="168" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{tipo}.intValue()==1?new java.lang.String("ASPIRANTE") : new java.lang.String("RENOVACION")]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="108" y="23" width="74" height="14"/>
+					<textElement/>
+					<text><![CDATA[Total mujeres]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="108" y="37" width="74" height="14" backcolor="#CCCCCC"/>
+					<textElement/>
+					<text><![CDATA[Total hombres]]></text>
+				</staticText>
+				<textField pattern="#,##0">
+					<reportElement x="182" y="23" width="59" height="14"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression class="java.lang.Integer"><![CDATA[$V{mujeresCategoria}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0">
+					<reportElement mode="Opaque" x="182" y="37" width="59" height="14" backcolor="#CCCCCC"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression class="java.lang.Integer"><![CDATA[$V{hombresCategoria}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="sexo">
+		<groupExpression><![CDATA[$F{sexo}]]></groupExpression>
+		<groupHeader>
+			<band height="20">
+				<textField>
+					<reportElement x="125" y="0" width="100" height="20"/>
+					<textElement>
+						<font size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{sexo}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="81" y="0" width="44" height="20"/>
+					<textElement>
+						<font size="12" pdfFontName="Helvetica-Bold" isPdfEmbedded="false"/>
+					</textElement>
+					<text><![CDATA[Sexo]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="23">
+				<textField>
+					<reportElement x="175" y="0" width="90" height="20"/>
+					<textElement>
+						<font size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{sexo}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="265" y="0" width="100" height="20"/>
+					<textElement textAlignment="Right">
+						<font isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Long"><![CDATA[$V{totalSexo}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="108" y="0" width="67" height="20"/>
+					<textElement/>
+					<text><![CDATA[Total sexo]]></text>
+				</staticText>
+				<line>
+					<reportElement x="0" y="21" width="555" height="1"/>
+				</line>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="vigencia">
+		<groupExpression><![CDATA[$F{vigencia}]]></groupExpression>
+		<groupHeader>
+			<band height="23">
+				<staticText>
+					<reportElement mode="Opaque" x="108" y="0" width="67" height="20" backcolor="#FFFFFF"/>
+					<textElement>
+						<font size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Vigencia]]></text>
+				</staticText>
+				<textField>
+					<reportElement mode="Opaque" x="175" y="0" width="36" height="23" backcolor="#FFFFFF"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Integer"><![CDATA[$F{vigencia}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="211" y="0" width="39" height="23"/>
+					<textElement verticalAlignment="Middle">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[años]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="121">
+				<staticText>
+					<reportElement mode="Opaque" x="108" y="101" width="50" height="20" backcolor="#CCCCCC"/>
+					<textElement/>
+					<text><![CDATA[Vigencia]]></text>
+				</staticText>
+				<textField pattern="#,##0">
+					<reportElement mode="Opaque" x="243" y="101" width="100" height="20" backcolor="#CCCCCC"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression class="java.lang.Long"><![CDATA[$V{vigenciaTotal}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement mode="Opaque" x="158" y="101" width="85" height="20" backcolor="#CCCCCC"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression class="java.lang.Integer"><![CDATA[$F{vigencia}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="226" y="0" width="117" height="20"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression class="java.lang.Integer"><![CDATA[$V{de16a18}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Opaque" x="176" y="20" width="104" height="20" backcolor="#CCCCCC"/>
+					<textElement/>
+					<text><![CDATA[19 a 24]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="176" y="40" width="104" height="20"/>
+					<textElement/>
+					<text><![CDATA[25 a 45]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="226" y="40" width="117" height="20"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression class="java.lang.Integer"><![CDATA[$V{de25a45}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Opaque" x="176" y="60" width="104" height="20" backcolor="#CCCCCC"/>
+					<textElement/>
+					<text><![CDATA[46 a 60]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="176" y="80" width="104" height="20"/>
+					<textElement/>
+					<text><![CDATA[61 a 75]]></text>
+				</staticText>
+				<textField>
+					<reportElement mode="Opaque" x="226" y="20" width="117" height="20" backcolor="#CCCCCC"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression class="java.lang.Integer"><![CDATA[$V{de19a24}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement mode="Opaque" x="226" y="60" width="117" height="20" backcolor="#CCCCCC"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression class="java.lang.Integer"><![CDATA[$V{de46a60}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="226" y="80" width="117" height="20"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression class="java.lang.Integer"><![CDATA[$V{de61a75}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="176" y="0" width="104" height="20"/>
+					<textElement/>
+					<text><![CDATA[16 a 18]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="21" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="67" height="20"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[MEDILAB ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="67" y="1" width="306" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Libretas de Conducir Amateur]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="372" y="1" width="38" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Entre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="468" y="1" width="11" height="20"/>
+				<textElement/>
+				<text><![CDATA[y]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="409" y="0" width="59" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.util.Date"><![CDATA[$P{fechadesde}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="478" y="1" width="77" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.util.Date"><![CDATA[$P{fechahasta}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="15" splitType="Stretch">
+			<textField evaluationTime="Report">
+				<reportElement x="515" y="0" width="40" height="15"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="413" y="1" width="100" height="14"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA["Página "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="500" splitType="Stretch">
+			<rectangle>
+				<reportElement x="1" y="20" width="552" height="120"/>
+			</rectangle>
+			<textField pattern="#,##0;-#,##0">
+				<reportElement x="478" y="20" width="75" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{supertotal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="169" y="0" width="233" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="15" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[SUMARIO POR SEXO - EDAD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="191" y="20" width="99" height="20" backcolor="#FFFFFF"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Hombres]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="20" width="99" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Total Mujeres]]></text>
+			</staticText>
+			<textField pattern="#,##0;-#,##0">
+				<reportElement mode="Transparent" x="290" y="20" width="75" height="20" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{hombres}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0;-#,##0">
+				<reportElement x="100" y="20" width="75" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{mujeres}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="428" y="120" width="125" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{Tde61a75}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="378" y="120" width="112" height="20"/>
+				<textElement/>
+				<text><![CDATA[61 a 75]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Opaque" x="428" y="100" width="125" height="20" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{Tde46a60}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="428" y="80" width="125" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{Tde25a45}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="428" y="40" width="125" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{Tde16a18}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="378" y="60" width="112" height="20" backcolor="#CCCCCC"/>
+				<textElement/>
+				<text><![CDATA[19 a 24]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Opaque" x="428" y="60" width="125" height="20" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{Tde19a24}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="378" y="40" width="112" height="20"/>
+				<textElement/>
+				<text><![CDATA[16 a 18]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="378" y="80" width="112" height="20"/>
+				<textElement/>
+				<text><![CDATA[25 a 45]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="378" y="100" width="112" height="20" backcolor="#CCCCCC"/>
+				<textElement/>
+				<text><![CDATA[46 a 60]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="241" y="40" width="125" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{Hde16a18}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="241" y="100" width="125" height="20" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{Hde46a60}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="191" y="40" width="112" height="20"/>
+				<textElement/>
+				<text><![CDATA[16 a 18]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="191" y="100" width="112" height="20" backcolor="#CCCCCC"/>
+				<textElement/>
+				<text><![CDATA[46 a 60]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="191" y="80" width="112" height="20"/>
+				<textElement/>
+				<text><![CDATA[25 a 45]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="241" y="80" width="125" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{Hde25a45}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="241" y="60" width="125" height="20" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{Hde19a24}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="241" y="120" width="125" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{Hde61a75}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="191" y="120" width="112" height="20"/>
+				<textElement/>
+				<text><![CDATA[61 a 75]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="191" y="60" width="112" height="20" backcolor="#CCCCCC"/>
+				<textElement/>
+				<text><![CDATA[19 a 24]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Opaque" x="51" y="60" width="125" height="20" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{Mde19a24}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="51" y="100" width="125" height="20" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{Mde46a60}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="51" y="80" width="125" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{Mde25a45}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="2" y="100" width="112" height="20" backcolor="#CCCCCC"/>
+				<textElement/>
+				<text><![CDATA[46 a 60]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="80" width="112" height="20"/>
+				<textElement/>
+				<text><![CDATA[25 a 45]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="120" width="112" height="20"/>
+				<textElement/>
+				<text><![CDATA[61 a 75]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="40" width="112" height="20"/>
+				<textElement/>
+				<text><![CDATA[16 a 18]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2" y="60" width="112" height="20" backcolor="#CCCCCC"/>
+				<textElement/>
+				<text><![CDATA[19 a 24]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="51" y="40" width="125" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{Mde16a18}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="378" y="20" width="100" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="51" y="120" width="125" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{Mde61a75}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="182" y="20" width="1" height="120"/>
+			</line>
+			<line>
+				<reportElement x="371" y="20" width="1" height="120"/>
+			</line>
+			<line>
+				<reportElement x="1" y="40" width="552" height="1"/>
+			</line>
+			<rectangle>
+				<reportElement x="0" y="170" width="555" height="88"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="169" y="150" width="233" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="15" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[SUMARIO POR CATEGORIAS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="170" width="99" height="20"/>
+				<textElement/>
+				<text><![CDATA[Aspirantes]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="101" y="170" width="75" height="20"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{totalAspirantes}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="183" y="170" width="1" height="88"/>
+			</line>
+			<line>
+				<reportElement x="372" y="170" width="1" height="88"/>
+			</line>
+			<staticText>
+				<reportElement x="191" y="170" width="99" height="20"/>
+				<textElement/>
+				<text><![CDATA[Renovación]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="290" y="170" width="75" height="20"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{totalRenovacion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="379" y="170" width="99" height="20"/>
+				<textElement/>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="478" y="170" width="75" height="20"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[new java.lang.Integer($V{totalRenovacion}.intValue() + $V{totalAspirantes}.intValue())]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0;-#,##0">
+				<reportElement x="290" y="190" width="74" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{totalRenovacionA}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0;-#,##0">
+				<reportElement mode="Opaque" x="290" y="210" width="74" height="20" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{totalRenovacionG1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0;-#,##0">
+				<reportElement x="100" y="230" width="75" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{totalAspiranteG2}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0;-#,##0">
+				<reportElement x="100" y="190" width="75" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{totalAspiranteA}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0;-#,##0">
+				<reportElement mode="Opaque" x="100" y="210" width="75" height="20" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{totalAspiranteG1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0;-#,##0">
+				<reportElement x="290" y="230" width="74" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{totalRenovacionG2}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0;-#,##0">
+				<reportElement x="478" y="190" width="75" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{totalA}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0;-#,##0">
+				<reportElement mode="Opaque" x="478" y="210" width="75" height="20" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{totalG1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0;-#,##0">
+				<reportElement x="478" y="230" width="75" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{totalG2}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="190" width="98" height="20"/>
+				<textElement textAlignment="Center">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[A]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2" y="210" width="98" height="20" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[G1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="230" width="98" height="20"/>
+				<textElement textAlignment="Center">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[G2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="191" y="190" width="99" height="20"/>
+				<textElement textAlignment="Center">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[A]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="191" y="210" width="99" height="20" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[G1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="191" y="230" width="99" height="20"/>
+				<textElement textAlignment="Center">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[G2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="190" width="98" height="20"/>
+				<textElement textAlignment="Center">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[A]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="380" y="210" width="98" height="20" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[G1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="381" y="230" width="98" height="20"/>
+				<textElement textAlignment="Center">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[G2]]></text>
+			</staticText>
+			<line>
+				<reportElement x="2" y="189" width="553" height="1"/>
+			</line>
+		</band>
+	</summary>
+</jasperReport>
